@@ -1,0 +1,380 @@
+{
+  "platform": "react",
+  "code": {
+    "lang": "ts",
+    "scheme": "blackbox",
+    "reactRuntime": "classic"
+  },
+  "style": {
+    "scheme": "css-modules",
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+  },
+  "images": {
+    "scheme": "files",
+    "publicDir": "../../public",
+    "publicUrlPrefix": "/static/"
+  },
+  "tokens": {
+    "scheme": "theo",
+    "tokensFilePath": "plasmic-tokens.theo.json"
+  },
+  "srcDir": "src/components",
+  "defaultPlasmicDir": "./plasmic",
+  "projects": [
+    {
+      "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+      "projectApiToken": "L1RFJkuUW63ez1epePzMXrZwvaKrpndiqdb5JdhLNcV479CYu0vD5DD5gjDauaTLIXIvVyMtx4IbyKqF3gw",
+      "projectName": "PiXL-B",
+      "version": "latest",
+      "cssFilePath": "plasmic/pi_xl_b/plasmic_pi_xl_b.module.css",
+      "components": [
+        {
+          "id": "k_UnP3SMVUT73",
+          "name": "Homepage",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicHomepage.tsx",
+          "importSpec": {
+            "modulePath": "Homepage.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicHomepage.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "l1cZrxXjGJlGQf",
+          "name": "Button",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicButton.tsx",
+          "importSpec": {
+            "modulePath": "Button.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicButton.module.css",
+          "scheme": "blackbox",
+          "componentType": "component",
+          "plumeType": "button"
+        },
+        {
+          "id": "x7rG2xB6vrdfcB",
+          "name": "Play",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicPlay.tsx",
+          "importSpec": {
+            "modulePath": "Play.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicPlay.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
+        },
+        {
+          "id": "3F2iKgtsZWXllH",
+          "name": "Navbar",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavbar.tsx",
+          "importSpec": {
+            "modulePath": "Navbar.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavbar.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
+          "id": "jXtM3YjACR",
+          "name": "NavBar",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavBar.tsx",
+          "importSpec": {
+            "modulePath": "NavBar.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavBar.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        }
+      ],
+      "icons": [
+        {
+          "id": "QqqMrdFXzVjwWb",
+          "name": "ChecksvgIcon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Checksvg.tsx"
+        },
+        {
+          "id": "EYy8CiUkq6_FkE",
+          "name": "Icon3Icon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Icon3.tsx"
+        },
+        {
+          "id": "gXF2SgcO-6cAyH",
+          "name": "Icon2Icon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Icon2.tsx"
+        },
+        {
+          "id": "olNBCzGQRsO0pW",
+          "name": "Icon28Icon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Icon28.tsx"
+        },
+        {
+          "id": "3pQdzVq1LFuKN1",
+          "name": "IconIcon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Icon.tsx"
+        },
+        {
+          "id": "HopU6anpDY-Q_0",
+          "name": "Icons8Right48SvgIcon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Icons8Right48Svg.tsx"
+        },
+        {
+          "id": "rqUC0und_eIcLs",
+          "name": "_227601RightArrowIconsvgIcon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon___227601RightArrowIconsvg.tsx"
+        },
+        {
+          "id": "OSUzn4xWLpgWdF",
+          "name": "Icon4Icon",
+          "moduleFilePath": "plasmic/pi_xl_b/icons/PlasmicIcon__Icon4.tsx"
+        }
+      ],
+      "images": [
+        {
+          "id": "CHTt7rjGqxoj0n",
+          "name": "logo.svg",
+          "filePath": "plasmic/pi_xl_b/images/logosvg.svg"
+        },
+        {
+          "id": "m9PIQPq0yljyjJ",
+          "name": "marketing-playbook.png",
+          "filePath": "plasmic/pi_xl_b/images/marketingPlaybookpng.png"
+        },
+        {
+          "id": "3nRLz8PiXNF9rK",
+          "name": "Group",
+          "filePath": "plasmic/pi_xl_b/images/group.svg"
+        },
+        {
+          "id": "Qi6Il0ypLLzsuB",
+          "name": "Group 2",
+          "filePath": "plasmic/pi_xl_b/images/group2.svg"
+        },
+        {
+          "id": "H8MyvU2ThXg2UJ",
+          "name": "Group 3",
+          "filePath": "plasmic/pi_xl_b/images/group3.svg"
+        },
+        {
+          "id": "CwktdYUiEhQsWW",
+          "name": "Group 4",
+          "filePath": "plasmic/pi_xl_b/images/group4.svg"
+        },
+        {
+          "id": "7cpvA0Oa7Cx5SC",
+          "name": "Group 5",
+          "filePath": "plasmic/pi_xl_b/images/group5.svg"
+        },
+        {
+          "id": "zLWbUEFAC0i5gm",
+          "name": "Group 6",
+          "filePath": "plasmic/pi_xl_b/images/group6.svg"
+        },
+        {
+          "id": "b-J7otZxm3UKwK",
+          "name": "Group 7",
+          "filePath": "plasmic/pi_xl_b/images/group7.svg"
+        },
+        {
+          "id": "OFFijTQksQlZIg",
+          "name": "book-inside.png",
+          "filePath": "plasmic/pi_xl_b/images/bookInsidepng.png"
+        },
+        {
+          "id": "iyMTWy46R9RH5k",
+          "name": "background-2.jpg",
+          "filePath": "plasmic/pi_xl_b/images/background2Jpg.jpeg"
+        },
+        {
+          "id": "FtUlnSsWls3dDl",
+          "name": "hilary-ouse.png",
+          "filePath": "plasmic/pi_xl_b/images/hilaryOusepng.png"
+        },
+        {
+          "id": "gfEUlUO5HTNJHY",
+          "name": "book-inside-2.png",
+          "filePath": "plasmic/pi_xl_b/images/bookInside2Png.png"
+        },
+        {
+          "id": "I_4FZNpRSCU9zM",
+          "name": "background.jpg",
+          "filePath": "plasmic/pi_xl_b/images/backgroundjpg.jpeg"
+        },
+        {
+          "id": "3g0e580_5PpklH",
+          "name": "brandon-guidelines.jpg",
+          "filePath": "plasmic/pi_xl_b/images/brandonGuidelinesjpg.jpeg"
+        },
+        {
+          "id": "R3Ti_uilQARKJP",
+          "name": "logo (1).svg",
+          "filePath": "plasmic/pi_xl_b/images/logo1Svg.svg"
+        },
+        {
+          "id": "CmbUSdZjsh1fmc",
+          "name": "icons8-twitter.svg",
+          "filePath": "plasmic/pi_xl_b/images/icons8Twittersvg.svg"
+        },
+        {
+          "id": "JicRHDu9xK-Lw3",
+          "name": "icons8-facebook.svg",
+          "filePath": "plasmic/pi_xl_b/images/icons8Facebooksvg.svg"
+        },
+        {
+          "id": "lsq9XbhMM2lBeQ",
+          "name": "icons8-youtube.svg",
+          "filePath": "plasmic/pi_xl_b/images/icons8Youtubesvg.svg"
+        },
+        {
+          "id": "ofYNKRUApGXzAL",
+          "name": "icons8-vimeo.svg",
+          "filePath": "plasmic/pi_xl_b/images/icons8Vimeosvg.svg"
+        },
+        {
+          "id": "P_PLH-I_lhrZ29",
+          "name": "image",
+          "filePath": "plasmic/pi_xl_b/images/image.png"
+        },
+        {
+          "id": "vZHeplRDVdBwVJ",
+          "name": "image 2",
+          "filePath": "plasmic/pi_xl_b/images/image2.png"
+        },
+        {
+          "id": "iTOMPMG6hncDdE",
+          "name": "image 3",
+          "filePath": "plasmic/pi_xl_b/images/image3.png"
+        },
+        {
+          "id": "wkqPguPrwp0JTC",
+          "name": "image 4",
+          "filePath": "plasmic/pi_xl_b/images/image4.png"
+        },
+        {
+          "id": "2f9HEPYY7k5dLw",
+          "name": "image 5",
+          "filePath": "plasmic/pi_xl_b/images/image5.png"
+        },
+        {
+          "id": "7mDKn4iPdj95su",
+          "name": "image 6",
+          "filePath": "plasmic/pi_xl_b/images/image6.png"
+        },
+        {
+          "id": "bVDSh_ZJtamLxd",
+          "name": "image 7",
+          "filePath": "plasmic/pi_xl_b/images/image7.png"
+        },
+        {
+          "id": "pu3JK9fHHGqvnN",
+          "name": "image 8",
+          "filePath": "plasmic/pi_xl_b/images/image8.png"
+        },
+        {
+          "id": "tMXyB4aFUO-zC6",
+          "name": "image 9",
+          "filePath": "plasmic/pi_xl_b/images/image9.png"
+        },
+        {
+          "id": "7q84Xvu5TpBsti",
+          "name": "image 10",
+          "filePath": "plasmic/pi_xl_b/images/image10.png"
+        },
+        {
+          "id": "FWe_9DMVhuHLcP",
+          "name": "westworld.png",
+          "filePath": "plasmic/pi_xl_b/images/westworldpng.png"
+        },
+        {
+          "id": "ppym0PmpOhdCEe",
+          "name": "red_dead_logo.png",
+          "filePath": "plasmic/pi_xl_b/images/redDeadLogopng.png"
+        },
+        {
+          "id": "Cv6PrXTHwIMzrk",
+          "name": "algo_logo.png",
+          "filePath": "plasmic/pi_xl_b/images/algoLogopng.png"
+        },
+        {
+          "id": "f7ZYJukvEdwxGj",
+          "name": "encode_logo.png",
+          "filePath": "plasmic/pi_xl_b/images/encodeLogopng.png"
+        },
+        {
+          "id": "IlrTPe86OUdHXH",
+          "name": "logoAlgoRancheroSmall.png",
+          "filePath": "plasmic/pi_xl_b/images/logoAlgoRancheroSmallpng.png"
+        },
+        {
+          "id": "oYp6ydTg9LZ3L1",
+          "name": "ranchero1.png",
+          "filePath": "plasmic/pi_xl_b/images/ranchero1Png.png"
+        },
+        {
+          "id": "7wZ0TPCLBkyixm",
+          "name": "suel.png",
+          "filePath": "plasmic/pi_xl_b/images/suelpng.png"
+        },
+        {
+          "id": "zVhC3LPn4VnQz5",
+          "name": "trading.png",
+          "filePath": "plasmic/pi_xl_b/images/tradingpng.png"
+        },
+        {
+          "id": "V2v6zXVikVSAE-",
+          "name": "unityPlaceholder.png",
+          "filePath": "plasmic/pi_xl_b/images/unityPlaceholderpng.png"
+        },
+        {
+          "id": "4VdGWen_v_A7jW",
+          "name": "ticket.png",
+          "filePath": "plasmic/pi_xl_b/images/ticketpng.png"
+        },
+        {
+          "id": "3egjsurOi4rUFc",
+          "name": "need.png",
+          "filePath": "plasmic/pi_xl_b/images/needpng.png"
+        },
+        {
+          "id": "1zD2FlguY",
+          "name": "LOGO-PIXL-final.png",
+          "filePath": "plasmic/pi_xl_b/images/logoPixlFinalpng.png"
+        },
+        {
+          "id": "0oI440eno",
+          "name": "PiXL1",
+          "filePath": "plasmic/pi_xl_b/images/piXl1.png"
+        },
+        {
+          "id": "LLqsxA6fg",
+          "name": "Screen-Shot-2022-07-17-at-6.23.21-PM.png",
+          "filePath": "plasmic/pi_xl_b/images/screenShot20220717At62321PMpng.png"
+        }
+      ],
+      "indirect": false,
+      "globalContextsFilePath": "",
+      "codeComponents": []
+    }
+  ],
+  "globalVariants": {
+    "variantGroups": [
+      {
+        "id": "38zwnZARMk9Gci",
+        "name": "Screen",
+        "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+        "contextFilePath": "plasmic/pi_xl_b/PlasmicGlobalVariant__Screen.tsx"
+      }
+    ]
+  },
+  "wrapPagesWithGlobalContexts": true,
+  "cliVersion": "0.1.184",
+  "$schema": "https://unpkg.com/@plasmicapp/cli@0.1.184/dist/plasmic.schema.json"
+}
