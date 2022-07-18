@@ -44,11 +44,16 @@ import ChecksvgIcon from './icons/PlasmicIcon__Checksvg'; // plasmic-import: Qqq
 import Icon4Icon from './icons/PlasmicIcon__Icon4'; // plasmic-import: OSUzn4xWLpgWdF/icon
 import logoPixlFinalpng1ZD2FlguY from './images/logoPixlFinalpng.png'; // plasmic-import: 1zD2FlguY/picture
 
-export type PlasmicNavBar__VariantMembers = {};
+export type PlasmicNavBar__VariantMembers = {
+  synced: 'synced';
+};
 
-export type PlasmicNavBar__VariantsArgs = {};
+export type PlasmicNavBar__VariantsArgs = {
+  synced?: SingleBooleanChoiceArg<'synced'>;
+};
+
 type VariantPropType = keyof PlasmicNavBar__VariantsArgs;
-export const PlasmicNavBar__VariantProps = new Array<VariantPropType>();
+export const PlasmicNavBar__VariantProps = new Array<VariantPropType>('synced');
 
 export type PlasmicNavBar__ArgsType = {};
 type ArgPropType = keyof PlasmicNavBar__ArgsType;
@@ -68,6 +73,7 @@ export type PlasmicNavBar__OverridesType = {
 };
 
 export interface DefaultNavBarProps {
+  synced?: SingleBooleanChoiceArg<'synced'>;
   className?: string;
 }
 
@@ -199,7 +205,9 @@ function PlasmicNavBar__RenderFunc(props: {
         <Button
           data-plasmic-name={'syncButton'}
           data-plasmic-override={overrides.syncButton}
-          className={classNames('__wab_instance', sty.syncButton)}
+          className={classNames('__wab_instance', sty.syncButton, {
+            [sty.syncButtonsynced]: hasVariant(variants, 'synced', 'synced'),
+          })}
           color={'red' as const}
           link={'/play' as const}
           shape={'rounded' as const}
@@ -210,10 +218,13 @@ function PlasmicNavBar__RenderFunc(props: {
             className={classNames(
               projectcss.all,
               projectcss.__wab_text,
-              sty.btnText
+              sty.btnText,
+              { [sty.btnTextsynced]: hasVariant(variants, 'synced', 'synced') }
             )}
           >
-            {'Sync Wallet'}
+            {hasVariant(variants, 'synced', 'synced')
+              ? 'UnSync '
+              : 'Sync Wallet'}
           </div>
         </Button>
       </div>

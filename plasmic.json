@@ -69,19 +69,6 @@
           "componentType": "page"
         },
         {
-          "id": "jXtM3YjACR",
-          "name": "NavBar",
-          "type": "managed",
-          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
-          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavBar.tsx",
-          "importSpec": {
-            "modulePath": "NavBar.tsx"
-          },
-          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavBar.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "Xw8-kYruc_9",
           "name": "About",
           "type": "managed",
@@ -93,6 +80,19 @@
           "cssFilePath": "plasmic/pi_xl_b/PlasmicAbout.module.css",
           "scheme": "blackbox",
           "componentType": "page"
+        },
+        {
+          "id": "jXtM3YjACR",
+          "name": "NavBar",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavBar.tsx",
+          "importSpec": {
+            "modulePath": "NavBar.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavBar.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
         }
       ],
       "icons": [
