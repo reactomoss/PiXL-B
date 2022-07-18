@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { TezosContext } from "../components/TezosContext/Context";
-import type { TezosContextValue } from "../components/TezosContext/Context";
+import { TezosContext } from "../contexts/TezosContext/Context";
+import type { TezosContextValue } from "../contexts/TezosContext/Context";
 
 /**
  * A hook to access the value of the `TezosContext`. This is a low-level

@@ -1,11 +1,11 @@
 import { Route, Switch } from "react-router";
 import { BrowserRouter } from "react-router-dom";
 import { PlasmicRootProvider, PlasmicCanvasHost } from "@plasmicapp/loader-react";
-import Home from "./components/Home";
-import About from "./components/About";
-import DayPass from "./components/DayPass";
-import Items from "./components/Items";
-import Missions from "./components/Missions";
+import Home from "./components/Homepage";
+// import About from "./components/About";
+// import DayPass from "./components/DayPass";
+// import Items from "./components/Items";
+// import Missions from "./components/Missions";
 import Play from "./components/Play";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
     <PlasmicRootProvider>
       <BrowserRouter>
         <Switch>
-          <Route path="/about">
+          {/* <Route path="/about">
             <About />
           </Route>
           <Route path="/day-pass">
@@ -24,11 +24,10 @@ function App() {
           </Route>
           <Route path="/missions">
             <Missions />
-          </Route>
+          </Route> */}
           <Route path="/play">
             <Play />
           </Route>
-          <Route path="/plasmic-host" render={() => <PlasmicCanvasHost />} />
           <Route path="/" exact>
             <Home />
           </Route>
