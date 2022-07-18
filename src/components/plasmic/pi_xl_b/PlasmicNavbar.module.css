@@ -78,7 +78,7 @@
 }
 .link3 {
   color: #2c343c;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   position: relative;
   width: auto;
@@ -97,9 +97,9 @@
     position: relative;
   }
 }
-.link2 {
+.about {
   color: #2c343c;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   position: relative;
   width: auto;
@@ -110,7 +110,7 @@
   padding: 0px 15px 0px 0px;
 }
 @media (min-width: 0px) and (max-width: 768px) {
-  .link2 {
+  .about {
     font-size: 10px;
     left: auto;
     top: auto;
@@ -121,7 +121,7 @@
 }
 .link4 {
   color: #2c343c;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   position: relative;
   width: auto;
@@ -158,11 +158,11 @@
     margin-left: 0px;
   }
 }
-.syncWallet:global(.__wab_instance) {
+.syncButton:global(.__wab_instance) {
   max-width: 100%;
   position: relative;
 }
-.svg__koDal {
+.svg___9J5Ox {
   position: relative;
   object-fit: cover;
   width: 1em;
@@ -170,7 +170,7 @@
 }
 .btnText {
   color: #ffffff;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 14px;
   font-weight: 600;
   padding-left: 15px;
@@ -183,7 +183,7 @@
     padding-right: 5px;
   }
 }
-.svg___2Kq41 {
+.svg___8EtIz {
   position: relative;
   object-fit: cover;
   width: 1em;

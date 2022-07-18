@@ -7,7 +7,7 @@
   },
   "style": {
     "scheme": "css-modules",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
   },
   "images": {
     "scheme": "files",
@@ -69,19 +69,6 @@
           "componentType": "page"
         },
         {
-          "id": "3F2iKgtsZWXllH",
-          "name": "Navbar",
-          "type": "managed",
-          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
-          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavbar.tsx",
-          "importSpec": {
-            "modulePath": "Navbar.tsx"
-          },
-          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavbar.module.css",
-          "scheme": "blackbox",
-          "componentType": "component"
-        },
-        {
           "id": "jXtM3YjACR",
           "name": "NavBar",
           "type": "managed",
@@ -93,6 +80,19 @@
           "cssFilePath": "plasmic/pi_xl_b/PlasmicNavBar.module.css",
           "scheme": "blackbox",
           "componentType": "component"
+        },
+        {
+          "id": "Xw8-kYruc_9",
+          "name": "About",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicAbout.tsx",
+          "importSpec": {
+            "modulePath": "About.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicAbout.module.css",
+          "scheme": "blackbox",
+          "componentType": "page"
         }
       ],
       "icons": [
@@ -357,6 +357,21 @@
           "id": "LLqsxA6fg",
           "name": "Screen-Shot-2022-07-17-at-6.23.21-PM.png",
           "filePath": "plasmic/pi_xl_b/images/screenShot20220717At62321PMpng.png"
+        },
+        {
+          "id": "VC9oytiJP",
+          "name": "PiXL2",
+          "filePath": "plasmic/pi_xl_b/images/piXl2.png"
+        },
+        {
+          "id": "5r1FpKI_w",
+          "name": "pixl3",
+          "filePath": "plasmic/pi_xl_b/images/pixl3.png"
+        },
+        {
+          "id": "wBhhyCaBO",
+          "name": "entrycoin",
+          "filePath": "plasmic/pi_xl_b/images/entrycoin.png"
         }
       ],
       "indirect": false,
