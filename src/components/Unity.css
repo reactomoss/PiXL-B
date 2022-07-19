@@ -12,6 +12,14 @@
   color: white;
 }
 
+.item-container {
+  display: flex;
+  padding: 3rem;
+  overflow-x: auto;
+  justify-content: center;
+  align-items: center;
+}
+
 #loading {
   background: url('../images/loading.gif') no-repeat center center;
   height: 100%;
@@ -30,7 +38,7 @@
   padding: 4px;
   border-radius: 16px;
   background: #fff;
-  box-shadow: -1rem 0 1rem #000;
+  box-shadow: -1rem 0 1rem #555;
   display: flex;
   flex-direction: column;
   transition: .2s;
@@ -50,12 +58,6 @@
 
 .card:not(:first-child) {
   margin-left: -130px;
-}
-
-.card-list {
-  display: flex;
-  padding: 3rem;
-  overflow-x: auto;
 }
 
 img.entry-coin {

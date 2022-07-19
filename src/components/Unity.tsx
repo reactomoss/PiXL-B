@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
+import { ItemType } from 'types';
 import EntryCoin from './EntryCoin';
 import Inventory from './Inventory';
 import './Unity.css';
@@ -17,14 +18,6 @@ import {
   addGameItemsAction,
   setInventoryFullAction,
 } from 'redux/action';
-
-export type ItemType = {
-  name: string;
-  imageSrc: string;
-  alt: string;
-  id?: number;
-  unityCardIdentifier?: number;
-};
 
 const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
@@ -99,14 +92,8 @@ const UnityComponent = () => {
       console.error('Invalid item name');
       return;
     }
-    if (!running) {
-      console.error('Already running now');
-      return;
-    }
 
     try {
-      setRunning(true);
-
       const tokenId = await service.getTokenId(itemName);
       if (!tokenId) {
         throw new Error('Failed to get token ID from server');
@@ -129,12 +116,11 @@ const UnityComponent = () => {
 
       sendGameController('ItemMinted', itemName);
       toast.success(`Item ${itemName} has been successfully minted`);
-    } catch (error) {
+    }
+    catch (error) {
       console.error(error);
-      toast.error(`Failed to mint item ${itemName}`);
       sendError('Failed to mint item');
-    } finally {
-      setRunning(false);
+      toast.error(`Failed to mint item ${itemName}`);
     }
   };
 
@@ -144,12 +130,7 @@ const UnityComponent = () => {
       toast.error(Lang.connectYourWallet);
       return;
     }
-    if (running) {
-      return;
-    }
     try {
-      setRunning(true);
-
       const result = await service.mintPixltez(walletAddress, amount);
       if (!result) {
         throw new Error('Server Error');
@@ -157,12 +138,11 @@ const UnityComponent = () => {
       
       sendGameController('PiXLtezMinted', amount);
       toast.success(Lang.pixltezMinted);
-    } catch (err) {
+    }
+    catch (err) {
       console.error(err);
       sendError(Lang.pixltezMintFailed);
       toast.error(Lang.pixltezMintFailed);
-    } finally {
-      setRunning(false);
     }
   };
 
@@ -291,6 +271,7 @@ const UnityComponent = () => {
   }
 
   useEffect(() => {
+    console.log('getInitialCoins')
     const getInitialCoins = async () => {
       try {
         dispatch(loadEntryCoinAction(true));
@@ -350,7 +331,7 @@ const UnityComponent = () => {
       </div>
 
       {isLoaded && (
-        <div className="item-container card-list mt-2 ml-auto mr-auto items-center justify-center">
+        <div className="item-container">
           {!gameState.gameStarted && 
             <EntryCoin unity={unity}></EntryCoin>
           }

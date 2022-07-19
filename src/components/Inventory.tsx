@@ -32,7 +32,7 @@ const Inventory = ({ unity }: InventoryProps): JSX.Element => {
           className="card"
         >
           <img
-            className="ml-auto mr-auto"
+            className="item"
             src={item.imageSrc}
             alt={item.alt}
             style={{
