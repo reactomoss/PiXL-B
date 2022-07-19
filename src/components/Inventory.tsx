@@ -1,34 +1,40 @@
 import { useSelector } from 'react-redux';
+import { UnityProps } from 'types';
 import './Inventory.css';
 
 type InventoryProps = {
-  sendMessage: (gameObjectName: string, methodName: string, parameter?: any) => void;
+  unity: UnityProps;
 };
 
-const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
-  const gameState = useSelector((state: any) => state.gameState);
+const Inventory = ({ unity }: InventoryProps): JSX.Element => {
+  const gameItems = useSelector((state: any) => state.gameState.gameItems);
 
-  const handleItemClicked = (item: any) => {
-    const element = document.getElementById(item.alt);
+  const getElementId = (item: any, index: number) => {
+    return `inventory_item_${item.id}_${index}`;
+  }
+
+  const handleItemClicked = (item: any, index: number) => {
+    const elementId = getElementId(item, index);
+    const element = document.getElementById(elementId);
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
-    //consumeItem(item); //TODO
+    unity.sendMessage('GameController', 'UseItem', 0);
   };
 
   return (
-    <section className="card-list mt-2 ml-auto mr-auto items-center justify-center">
-      {gameState.gameItems.map((item, index) => (
+    <>
+      {gameItems.map((item, index) => (
         <div
           key={index}
-          id={item.alt}
-          onClick={(e) => handleItemClicked(item)}
+          id={getElementId(item, index)}
+          onClick={(e) => handleItemClicked(item, index)}
           className="card"
         >
           <img
             className="ml-auto mr-auto"
             src={item.imageSrc}
-            alt="this slowpoke moves"
+            alt={item.alt}
             style={{
               height: '202px',
               width: '202px',
@@ -36,7 +42,7 @@ const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
           />
         </div>
       ))}
-    </section>
+    </>
   );
 };
 

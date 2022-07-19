@@ -1,3 +1,8 @@
+export type UnityProps = {
+  sendMessage: (gameObjectName: string, methodName: string, parameter?: any) => void;
+  addEventListener: (eventName: string, callback: (...parameters: any[]) => void) => void;
+}
+
 export type ItemType = {
   name: string,
   imageSrc: string,

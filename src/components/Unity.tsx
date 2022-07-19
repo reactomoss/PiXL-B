@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
-import Loading from './Loading';
-import GameItems from './GameItems';
-import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
 import Inventory from './Inventory';
 import './Unity.css';
@@ -16,6 +13,7 @@ import useGame from 'hooks/useGame';
 import {
   loadEntryCoinAction,
   setEntryCoinAction,
+  setGameStartedAction,
   addGameItemsAction,
   setInventoryFullAction,
 } from 'redux/action';
@@ -38,13 +36,11 @@ const unityConfig = {
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  const { walletAddress, connectWallet } = useWallet();
-  const { findEntryCoin } = usePixltez();
-  const { mintItem, getWalletItems } = useGame();
-  const [progression, setProgression] = useState(0);
-  const [gameStarted, setGameStarted] = useState(false);
   const [running, setRunning] = useState(false);
   const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
+  const { walletAddress } = useWallet();
+  const { findEntryCoin } = usePixltez();
+  const { mintItem, getWalletItems } = useGame();
   const {
     unityProvider,
     isLoaded,
@@ -53,6 +49,13 @@ const UnityComponent = () => {
     sendMessage,
     addEventListener,
   } = useUnityContext(unityConfig);
+
+  const unity = useMemo(() => {
+    return {
+      sendMessage,
+      addEventListener,
+    }
+  }, [sendMessage, addEventListener])
 
   document.onfullscreenchange = function (event) {
     requestFullscreen(false);
@@ -74,18 +77,9 @@ const UnityComponent = () => {
     sendAccessController('WalletConnected', walletAddress || '');
   }, [walletAddress]);
 
-  const handleUnityProgress = (progression) => {
-    setProgression(progression);
-  };
-
-  const handleConnectWallet = () => {
-    if (!walletAddress) {
-      connectWallet();
-    }
-  };
-
   const handleGameStarted = () => {
-    setGameStarted(true);
+    dispatch(setGameStartedAction(true));
+    loadInventoryItems();
   };
 
   const handleGameOver = async (userName, score) => {
@@ -249,8 +243,6 @@ const UnityComponent = () => {
     }*/
   };
 
-  addEventListener('progress', handleUnityProgress);
-  addEventListener('ConnectWallet', handleConnectWallet);
   addEventListener('GameOver', handleGameOver);
   addEventListener('MintThis', handleMintItem);
   addEventListener('MintPiXLtez', handleMintPiXLtez);
@@ -261,25 +253,12 @@ const UnityComponent = () => {
   addEventListener('RequestItem', handleRequestItem);
   addEventListener('GameStarted', handleGameStarted);
 
-  const consumeItem = (item: any) => {
-    console.log('consumeItem', item);
-    sendAccessController('InsertCoin', 0);
-  };
-
-  const sendCoin = (coin: ItemType) => {
-    sendAccessController('InsertCoin', coin.id);
-    setTimeout(() => {
-      dispatch(setEntryCoinAction([]));
-      findGameItems();
-    }, 1000);
-  };
-
-  const findGameItems = async () => {
+  const loadInventoryItems = async () => {
     try {
       dispatch(loadEntryCoinAction(true));
 
       const item = await getWalletItems(0);
-      console.log('walletItem', item);
+      console.log('loadInventoryItems', item);
       if (item) {
         const { metadata } = item;
         const gameItem = {
@@ -298,7 +277,7 @@ const UnityComponent = () => {
     } finally {
       dispatch(loadEntryCoinAction(false));
     }
-  };
+  }
 
   useEffect(() => {
     const getInitialCoins = async () => {
@@ -338,25 +317,6 @@ const UnityComponent = () => {
     }*/
   }, [dispatch, walletAddress, findEntryCoin]);
 
-  const gameLoadedView = () => {
-    if (!walletAddress) {
-      return <HelpMessage></HelpMessage>;
-    }
-    return (
-      <>
-        {/* show coins */}
-        {gameState.entryCoins.length > 0 && (
-          <EntryCoin sendCoin={sendCoin}></EntryCoin>
-        )}
-        {/* show other Items */}
-        {gameStarted && gameState.gameItems.length > 0 && (
-          <GameItems consumeItem={consumeItem}></GameItems>
-        )}
-        {gameState.loadingStatus && <Loading></Loading>}
-      </>
-    );
-  };
-
   const loadingPercentage = Math.round(loadingProgression * 100);
 
   return (
@@ -377,7 +337,17 @@ const UnityComponent = () => {
           </div>
         )}
       </div>
-      {progression === 1 && <Inventory sendMessage={sendMessage}></Inventory>}
+
+      {isLoaded && (
+        <div className="item-container card-list mt-2 ml-auto mr-auto items-center justify-center">
+          {!gameState.gameStarted && 
+            <EntryCoin unity={unity}></EntryCoin>
+          }
+          {gameState.gameStarted && 
+            <Inventory unity={unity}></Inventory>
+          }
+        </div>
+      )}
     </>
   );
 };

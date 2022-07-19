@@ -1,29 +1,40 @@
-import { ItemType } from "../types";
-import { useSelector } from 'react-redux';
+import { ItemType, UnityProps } from '../types';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEntryCoinAction } from 'redux/action';
 
 type EntryCoinProps = {
-  sendCoin: (coin: ItemType) => void,
+  unity: UnityProps;
 };
 
-const EntryCoin = ({ sendCoin }: EntryCoinProps): JSX.Element => {
-  const gameState = useSelector((state: any) => state.gameState);
-  console.log('gameState.entryCoins', gameState.entryCoins)
+const EntryCoin = ({ unity }: EntryCoinProps): JSX.Element => {
+  const dispatch = useDispatch();
+  const entryCoins = useSelector((state: any) => state.gameState.entryCoins);
 
-  const handleSendCoin = (index, coin: ItemType) => {
-    const element = document.getElementById(`entrycoin_${index}`);
+  const getElementId = (item: any, index: number) => {
+    return `entrycoin_${index}`;
+  }
+
+  const handleItemClicked = (coin: ItemType, index: number) => {
+    const elementId = getElementId(coin, index);
+    const element = document.getElementById(elementId);
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
-    sendCoin(coin);
+
+    unity.sendMessage('AccessController', 'InsertCoin', coin.id);
+
+    setTimeout(() => {
+      dispatch(setEntryCoinAction([]));
+    }, 1000);
   };
 
   return (
-    <section className="card-list mt-2 ml-auto mr-auto items-center justify-center">
-      {gameState.entryCoins.map((coin, index) => (
+    <>
+      {entryCoins.map((coin, index) => (
         <div
           key={index}
-          id={`entrycoin_${index}`}
-          onClick={(e) => handleSendCoin(index, coin)}
+          id={getElementId(coin, index)}
+          onClick={(e) => handleItemClicked(coin, index)}
           className="card entry-card"
         >
           <img
@@ -31,14 +42,14 @@ const EntryCoin = ({ sendCoin }: EntryCoinProps): JSX.Element => {
             src={coin.imageSrc}
             alt={coin.alt}
             style={{
-              height: "190px",
-              width: "202px",
-              marginTop: "10px",
+              height: '190px',
+              width: '202px',
+              marginTop: '10px',
             }}
           />
         </div>
       ))}
-    </section>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import {
   GAME_ENTRY_COIN_LOAD,
   GAME_SET_ENTRY_COINS,
+  GAME_SET_GAME_STARTED,
   GAME_SET_GAME_ITEMS,
   GAME_ADD_GAME_ITEMS,
   GAME_SET_INVENTORY_FULL,
@@ -8,6 +9,7 @@ import {
 
 const initialState = {
   loadingStatus: false,
+  gameStarted: false,
   entryCoins: [],
   gameItems: [],
   inventoryFull: false,
@@ -25,6 +27,12 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         entryCoins: action.payload,
+      };
+    }
+    case GAME_SET_GAME_STARTED: {
+      return {
+        ...state,
+        gameStarted: action.payload,
       };
     }
     case GAME_SET_GAME_ITEMS: {
