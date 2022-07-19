@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Unity, { UnityContext } from 'react-unity-webgl';
+import { Unity, useUnityContext } from 'react-unity-webgl';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
 import Loading from './Loading';
 import GameItems from './GameItems';
 import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
-import LoadingBar from './LoadingBar';
+import Inventory from './Inventory';
 import './Unity.css';
 import useWallet from 'hooks/useWallet';
 import * as service from 'services';
@@ -28,12 +28,12 @@ export type ItemType = {
   unityCardIdentifier?: number;
 };
 
-const unityContext = new UnityContext({
+const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
   dataUrl: 'Build/1.data.unityweb',
   frameworkUrl: 'Build/1.framework.js.unityweb',
   codeUrl: 'Build/1.wasm.unityweb',
-});
+};
 
 const UnityComponent = () => {
   const dispatch = useDispatch();
@@ -45,17 +45,25 @@ const UnityComponent = () => {
   const [gameStarted, setGameStarted] = useState(false);
   const [running, setRunning] = useState(false);
   const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
+  const {
+    unityProvider,
+    isLoaded,
+    loadingProgression,
+    requestFullscreen,
+    sendMessage,
+    addEventListener,
+  } = useUnityContext(unityConfig);
 
   document.onfullscreenchange = function (event) {
-    unityContext.setFullscreen(false);
+    requestFullscreen(false);
   };
 
   const sendGameController = (methodName: string, parameter?: any) => {
-    unityContext.send('GameController', methodName, parameter);
+    sendMessage('GameController', methodName, parameter);
   };
 
   const sendAccessController = (methodName: string, parameter?: any) => {
-    unityContext.send('AccessController', methodName, parameter);
+    sendMessage('AccessController', methodName, parameter);
   };
 
   const sendError = (parameter?: any) => {
@@ -64,7 +72,7 @@ const UnityComponent = () => {
 
   useEffect(() => {
     sendAccessController('WalletConnected', walletAddress || '');
-  }, [walletAddress])
+  }, [walletAddress]);
 
   const handleUnityProgress = (progression) => {
     setProgression(progression);
@@ -78,7 +86,7 @@ const UnityComponent = () => {
 
   const handleGameStarted = () => {
     setGameStarted(true);
-  }
+  };
 
   const handleGameOver = async (userName, score) => {
     try {
@@ -241,18 +249,18 @@ const UnityComponent = () => {
     }*/
   };
 
-  unityContext.on('progress', handleUnityProgress);
-  unityContext.on('ConnectWallet', handleConnectWallet);
-  unityContext.on('GameOver', handleGameOver);
-  unityContext.on('MintThis', handleMintItem);
-  unityContext.on('MintPiXLtez', handleMintPiXLtez);
-  unityContext.on('ShareQuest', handleShareQuest);
-  unityContext.on('QuestCompleted', handleQuestCompleted);
-  unityContext.on('GotItem', handleGotItem);
-  unityContext.on('InventoryFull', handleInventoryFull);
-  unityContext.on('RequestItem', handleRequestItem);
-  unityContext.on('GameStarted', handleGameStarted);
-  
+  addEventListener('progress', handleUnityProgress);
+  addEventListener('ConnectWallet', handleConnectWallet);
+  addEventListener('GameOver', handleGameOver);
+  addEventListener('MintThis', handleMintItem);
+  addEventListener('MintPiXLtez', handleMintPiXLtez);
+  addEventListener('ShareQuest', handleShareQuest);
+  addEventListener('QuestCompleted', handleQuestCompleted);
+  addEventListener('GotItem', handleGotItem);
+  addEventListener('InventoryFull', handleInventoryFull);
+  addEventListener('RequestItem', handleRequestItem);
+  addEventListener('GameStarted', handleGameStarted);
+
   const consumeItem = (item: any) => {
     console.log('consumeItem', item);
     sendAccessController('InsertCoin', 0);
@@ -271,14 +279,16 @@ const UnityComponent = () => {
       dispatch(loadEntryCoinAction(true));
 
       const item = await getWalletItems(0);
-      console.log('walletItem', item)
+      console.log('walletItem', item);
       if (item) {
         const { metadata } = item;
         const gameItem = {
           name: item.metadata.name as string,
           imageSrc: service.createImageSrc(metadata.displayUri) as string,
           alt: `${metadata.token_id.toString()}`,
-          unityCardIdentifier: service.findUnityCardIdentifier(metadata.token_id),
+          unityCardIdentifier: service.findUnityCardIdentifier(
+            metadata.token_id
+          ),
         } as ItemType;
         dispatch(addGameItemsAction([gameItem]));
       }
@@ -300,7 +310,8 @@ const UnityComponent = () => {
               id: 0,
               name: Lang.entryCoinName,
               alt: Lang.entryCoinAlt,
-              imageSrc: 'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
+              imageSrc:
+                'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
             },
           ];
           dispatch(setEntryCoinAction(coins));
@@ -346,20 +357,28 @@ const UnityComponent = () => {
     );
   };
 
+  const loadingPercentage = Math.round(loadingProgression * 100);
+
   return (
-    <div className="unity-container">
-      <Unity
-        unityContext={unityContext}
-        style={{
-          height: 540,
-          width: 950,
-          background: 'grey',
-        }}
-      />
-      <Toaster />
-      {progression < 1 && <LoadingBar progression={progression} />}
-      {progression === 1 && gameLoadedView()}
-    </div>
+    <>
+      <div className="unity-container">
+        <Toaster />
+        <Unity
+          unityProvider={unityProvider}
+          style={{
+            height: 540,
+            width: 950,
+            background: '#555',
+          }}
+        />
+        {isLoaded === false && (
+          <div className="loading-overlay">
+            <p>Loading... ({loadingPercentage}%)</p>
+          </div>
+        )}
+      </div>
+      {progression === 1 && <Inventory sendMessage={sendMessage}></Inventory>}
+    </>
   );
 };
 
