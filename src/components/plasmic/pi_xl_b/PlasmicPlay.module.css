@@ -2366,8 +2366,8 @@
 }
 .freeBox___2HneQ > :global(.__wab_flex-container) {
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
   min-width: 0;
   margin-left: calc(0px - 105px);
   width: calc(100% + 105px);
@@ -2630,6 +2630,8 @@
 }
 .text___1AX4 {
   height: auto;
+  width: auto;
+  padding-right: 0px;
 }
 .svg__jaqoE {
   position: relative;

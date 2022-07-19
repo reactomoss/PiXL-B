@@ -372,6 +372,31 @@
           "id": "wBhhyCaBO",
           "name": "entrycoin",
           "filePath": "plasmic/pi_xl_b/images/entrycoin.png"
+        },
+        {
+          "id": "a2NpmTr5i",
+          "name": "coin1",
+          "filePath": "plasmic/pi_xl_b/images/coin1.png"
+        },
+        {
+          "id": "3PWdFqHmA",
+          "name": "International_Pokémon_logo.svg.png",
+          "filePath": "plasmic/pi_xl_b/images/internationalPokemonLogosvgpng.png"
+        },
+        {
+          "id": "pr-7blqex",
+          "name": "28120-6-the-legend-of-zelda-logo-image.png",
+          "filePath": "plasmic/pi_xl_b/images/_281206TheLegendOfZeldaLogoImagepng.png"
+        },
+        {
+          "id": "8P-whSwBJ",
+          "name": "TezosLogo_Horizontal_Blue.png",
+          "filePath": "plasmic/pi_xl_b/images/tezosLogoHorizontalBluepng.png"
+        },
+        {
+          "id": "L0NJf5Cz0_",
+          "name": "HereandNow_LogoSmall.svg",
+          "filePath": "plasmic/pi_xl_b/images/hereandNowLogoSmallsvg.svg"
         }
       ],
       "indirect": false,

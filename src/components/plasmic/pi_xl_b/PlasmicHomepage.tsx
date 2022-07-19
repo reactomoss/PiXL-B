@@ -45,10 +45,10 @@ import ChecksvgIcon from './icons/PlasmicIcon__Checksvg'; // plasmic-import: Qqq
 import Icon4Icon from './icons/PlasmicIcon__Icon4'; // plasmic-import: OSUzn4xWLpgWdF/icon
 import _227601RightArrowIconsvgIcon from './icons/PlasmicIcon___227601RightArrowIconsvg'; // plasmic-import: rqUC0und_eIcLs/icon
 import piXl10OI440Eno from './images/piXl1.png'; // plasmic-import: 0oI440eno/picture
-import westworldpngFWe9DmVhuHLcP from './images/westworldpng.png'; // plasmic-import: FWe_9DMVhuHLcP/picture
-import redDeadLogopngPpym0PmpOhdCEe from './images/redDeadLogopng.png'; // plasmic-import: ppym0PmpOhdCEe/picture
-import algoLogopngCv6PrXtHwIMzrk from './images/algoLogopng.png'; // plasmic-import: Cv6PrXTHwIMzrk/picture
-import encodeLogopngF7ZyJukvEdwxGj from './images/encodeLogopng.png'; // plasmic-import: f7ZYJukvEdwxGj/picture
+import internationalPokemonLogosvgpng3PWdFqHmA from './images/internationalPokemonLogosvgpng.png'; // plasmic-import: 3PWdFqHmA/picture
+import _281206TheLegendOfZeldaLogoImagepngPr7Blqex from './images/_281206TheLegendOfZeldaLogoImagepng.png'; // plasmic-import: pr-7blqex/picture
+import tezosLogoHorizontalBluepng8PWhSwBj from './images/tezosLogoHorizontalBluepng.png'; // plasmic-import: 8P-whSwBJ/picture
+import hereandNowLogoSmallsvgL0NJf5Cz0 from './images/hereandNowLogoSmallsvg.svg'; // plasmic-import: L0NJf5Cz0_/picture
 import piXl2Vc9OytiJp from './images/piXl2.png'; // plasmic-import: VC9oytiJP/picture
 import image7BVdShZJtamLxd from './images/image7.png'; // plasmic-import: bVDSh_ZJtamLxd/picture
 import pixl35R1FpKiW from './images/pixl3.png'; // plasmic-import: 5r1FpKI_w/picture
@@ -406,9 +406,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
                 loading={'lazy' as const}
                 src={{
-                  src: westworldpngFWe9DmVhuHLcP,
-                  fullWidth: 175,
-                  fullHeight: 122,
+                  src: internationalPokemonLogosvgpng3PWdFqHmA,
+                  fullWidth: 500,
+                  fullHeight: 184,
                   aspectRatio: undefined,
                 }}
               />
@@ -432,9 +432,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
                 loading={'lazy' as const}
                 src={{
-                  src: redDeadLogopngPpym0PmpOhdCEe,
-                  fullWidth: 175,
-                  fullHeight: 83,
+                  src: _281206TheLegendOfZeldaLogoImagepngPr7Blqex,
+                  fullWidth: 900,
+                  fullHeight: 675,
                   aspectRatio: undefined,
                 }}
               />
@@ -458,9 +458,9 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
                 loading={'lazy' as const}
                 src={{
-                  src: algoLogopngCv6PrXtHwIMzrk,
-                  fullWidth: 175,
-                  fullHeight: 83,
+                  src: tezosLogoHorizontalBluepng8PWhSwBj,
+                  fullWidth: 2851,
+                  fullHeight: 989,
                   aspectRatio: undefined,
                 }}
               />
@@ -484,10 +484,10 @@ function PlasmicHomepage__RenderFunc(props: {
                 }
                 loading={'lazy' as const}
                 src={{
-                  src: encodeLogopngF7ZyJukvEdwxGj,
-                  fullWidth: 175,
-                  fullHeight: 83,
-                  aspectRatio: undefined,
+                  src: hereandNowLogoSmallsvgL0NJf5Cz0,
+                  fullWidth: 300,
+                  fullHeight: 119,
+                  aspectRatio: 2.5275,
                 }}
               />
             </p.Stack>
@@ -875,7 +875,7 @@ function PlasmicHomepage__RenderFunc(props: {
                               sty.li__feyDg
                             )}
                           >
-                            {'Ticket To Ride '}
+                            {'1st Edition Entry Coin'}
                           </li>
                         </ol>
                       }
@@ -892,7 +892,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     )}
                   >
                     {
-                      'The first major bit of functionality will be to allow certain VIPs, influencers and whales to get early access to the game world. So our first NFT is the Ticket to Ride. When purchased, the owner will be able to board the train and travel to Algo Ranchero'
+                      'The first major bit of functionality will be to allow certain VIPs, influencers and whales to get early access to the game world. So our first NFT is the 1st Edition Entry Coin. When held, the owner will be able to enter the metaverse of PiXL!'
                     }
                   </p>
                 </div>
@@ -906,7 +906,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       sty.h2__pef4V
                     )}
                   >
-                    {'2. Unlock Characters'}
+                    {'2. Collab Missions'}
                   </h2>
 
                   <p
@@ -918,7 +918,7 @@ function PlasmicHomepage__RenderFunc(props: {
                     )}
                   >
                     {
-                      "Our next NFTs will be a series of characters that will allow you to change your hero's appearance and even add special skills. The character NFTs will be dropped over a period of time as they are revealed. "
+                      'PiXL will have special missions that can only be accessed by holding special mission NFTs. These will primarily be collaborations with other artists on Tezos. '
                     }
                   </p>
                 </div>
@@ -932,7 +932,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       sty.h2___5DtWa
                     )}
                   >
-                    {'3. Unlock Worlds '}
+                    {'3. Item NFTs '}
                   </h2>
 
                   <p
@@ -958,7 +958,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       sty.h2___7XyNx
                     )}
                   >
-                    {'4. Unlock Missions'}
+                    {'4. Mint PiXLtez'}
                   </h2>
 
                   <p
@@ -984,7 +984,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       sty.h2___4IrgJ
                     )}
                   >
-                    {'5. Buy Land'}
+                    {'5. 24 Hour Pass'}
                   </h2>
 
                   <p
@@ -1010,7 +1010,7 @@ function PlasmicHomepage__RenderFunc(props: {
                       sty.h2__kbHM
                     )}
                   >
-                    {'6. Unlock Duels'}
+                    {'6. PiXLtez staking'}
                   </h2>
 
                   <p
@@ -1734,9 +1734,9 @@ function PlasmicHomepage__RenderFunc(props: {
                     projectcss.__wab_text,
                     sty.footerLink
                   )}
-                  href={'/' as const}
+                  href={'/about' as const}
                 >
-                  {'Story'}
+                  {'About'}
                 </a>
               </div>
 

@@ -54,7 +54,7 @@ import tradingpngZVhC3LPn4VnQz5 from './images/tradingpng.png'; // plasmic-impor
 import image4WkqPguPrwp0Jtc from './images/image4.png'; // plasmic-import: wkqPguPrwp0JTC/picture
 import unityPlaceholderpngV2V6ZXVikVsae from './images/unityPlaceholderpng.png'; // plasmic-import: V2v6zXVikVSAE-/picture
 import needpng3EgjsurOi4RUFc from './images/needpng.png'; // plasmic-import: 3egjsurOi4rUFc/picture
-import entrycoinWBhhyCaBo from './images/entrycoin.png'; // plasmic-import: wBhhyCaBO/picture
+import coin1A2NpmTr5I from './images/coin1.png'; // plasmic-import: a2NpmTr5i/picture
 import logoPixlFinalpng1ZD2FlguY from './images/logoPixlFinalpng.png'; // plasmic-import: 1zD2FlguY/picture
 import icons8TwittersvgCmbUSdZjsh1Fmc from './images/icons8Twittersvg.svg'; // plasmic-import: CmbUSdZjsh1fmc/picture
 import icons8FacebooksvgJicRhDu9XKLw3 from './images/icons8Facebooksvg.svg'; // plasmic-import: JicRHDu9xK-Lw3/picture
@@ -1653,7 +1653,7 @@ function PlasmicPlay__RenderFunc(props: {
                         displayWidth={'1089px' as const}
                         loading={'lazy' as const}
                         src={{
-                          src: entrycoinWBhhyCaBo,
+                          src: coin1A2NpmTr5I,
                           fullWidth: 511,
                           fullHeight: 743,
                           aspectRatio: undefined,
@@ -1733,7 +1733,7 @@ function PlasmicPlay__RenderFunc(props: {
                                 sty.text___1AX4
                               )}
                             >
-                              {'Get A Ticket'}
+                              {'Get A Coin'}
                             </div>
                           </Button>
                         </div>

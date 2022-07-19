@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Unity, { UnityContext } from 'react-unity-webgl';
 import toast, { Toaster } from 'react-hot-toast';
 import Lang from 'lang/en';
-import LoadingItem from './LoadingItem';
+import Loading from './Loading';
 import GameItems from './GameItems';
 import HelpMessage from './HelpMessage';
 import EntryCoin from './EntryCoin';
@@ -341,7 +341,7 @@ const UnityComponent = () => {
         {gameStarted && gameState.gameItems.length > 0 && (
           <GameItems consumeItem={consumeItem}></GameItems>
         )}
-        {gameState.loadingStatus && <LoadingItem></LoadingItem>}
+        {gameState.loadingStatus && <Loading></Loading>}
       </>
     );
   };
@@ -353,7 +353,6 @@ const UnityComponent = () => {
         style={{
           height: 540,
           width: 950,
-          border: '2px solid black',
           background: 'grey',
         }}
       />

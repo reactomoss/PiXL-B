@@ -188,9 +188,7 @@ function PlasmicNavBar__RenderFunc(props: {
               projectcss.__wab_text,
               sty.link4
             )}
-            href={
-              'https://objkt.com/collection/KT1SGdop74rGobKAETcBPnz9yQkH38hZnpBh' as const
-            }
+            href={'https://objkt.com/profile/pixl/collections' as const}
           >
             {'Store'}
           </a>

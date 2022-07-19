@@ -9,8 +9,8 @@ const EntryCoin = ({ sendCoin }: EntryCoinProps): JSX.Element => {
   const gameState = useSelector((state: any) => state.gameState);
   console.log('gameState.entryCoins', gameState.entryCoins)
 
-  const handleSendCoin = (coin: ItemType) => {
-    const element = document.getElementById(coin.alt);
+  const handleSendCoin = (index, coin: ItemType) => {
+    const element = document.getElementById(`entrycoin_${index}`);
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
@@ -22,14 +22,14 @@ const EntryCoin = ({ sendCoin }: EntryCoinProps): JSX.Element => {
       {gameState.entryCoins.map((coin, index) => (
         <div
           key={index}
-          id={coin.alt}
-          onClick={(e) => handleSendCoin(coin)}
+          id={`entrycoin_${index}`}
+          onClick={(e) => handleSendCoin(index, coin)}
           className="card entry-card"
         >
           <img
-            className="ml-auto mr-auto"
+            className="entry-coin"
             src={coin.imageSrc}
-            alt="this slowpoke moves"
+            alt={coin.alt}
             style={{
               height: "190px",
               width: "202px",
