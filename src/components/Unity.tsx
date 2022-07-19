@@ -37,7 +37,6 @@ const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
   const [running, setRunning] = useState(false);
-  const [gameItems, setGameItems] = useState<Array<ItemType>>([]);
   const { walletAddress } = useWallet();
   const { findEntryCoin } = usePixltez();
   const { mintItem, getWalletItems } = useGame();
@@ -48,6 +47,7 @@ const UnityComponent = () => {
     requestFullscreen,
     sendMessage,
     addEventListener,
+    removeEventListener,
   } = useUnityContext(unityConfig);
 
   const unity = useMemo(() => {
@@ -65,17 +65,13 @@ const UnityComponent = () => {
     sendMessage('GameController', methodName, parameter);
   };
 
-  const sendAccessController = (methodName: string, parameter?: any) => {
-    sendMessage('AccessController', methodName, parameter);
-  };
-
   const sendError = (parameter?: any) => {
     sendGameController('SendError', parameter);
   };
 
   useEffect(() => {
-    sendAccessController('WalletConnected', walletAddress || '');
-  }, [walletAddress]);
+    sendMessage('AccessController', 'WalletConnected', walletAddress || '');
+  }, [walletAddress, sendMessage]);
 
   const handleGameStarted = () => {
     dispatch(setGameStartedAction(true));
@@ -129,10 +125,10 @@ const UnityComponent = () => {
         imageSrc: '/whitney-with-microphone.png',
         alt: 'Game Item',
       } as ItemType;
-      setGameItems([...gameItems, mintedItem]);
+      dispatch(addGameItemsAction([mintedItem]));
 
-      toast.success(`Item ${itemName} has been successfully minted`);
       sendGameController('ItemMinted', itemName);
+      toast.success(`Item ${itemName} has been successfully minted`);
     } catch (error) {
       console.error(error);
       toast.error(`Failed to mint item ${itemName}`);
@@ -158,8 +154,9 @@ const UnityComponent = () => {
       if (!result) {
         throw new Error('Server Error');
       }
-      toast.success(Lang.pixltezMinted);
+      
       sendGameController('PiXLtezMinted', amount);
+      toast.success(Lang.pixltezMinted);
     } catch (err) {
       console.error(err);
       sendError(Lang.pixltezMintFailed);
@@ -208,11 +205,11 @@ const UnityComponent = () => {
   };
 
   const handleGotItem = (itemId: number) => {
-    console.log('OnGotItem', itemId);
+    /*console.log('OnGotItem', itemId);
     const items = gameItems.filter((item) => item.alt !== itemId.toString());
     dispatch(addGameItemsAction(items));
     dispatch(setInventoryFullAction(false));
-    toast.success('Item has been added your inventory');
+    toast.success('Item has been added your inventory');*/
   };
 
   const handleInventoryFull = () => {
@@ -243,15 +240,29 @@ const UnityComponent = () => {
     }*/
   };
 
-  addEventListener('GameOver', handleGameOver);
-  addEventListener('MintThis', handleMintItem);
-  addEventListener('MintPiXLtez', handleMintPiXLtez);
-  addEventListener('ShareQuest', handleShareQuest);
-  addEventListener('QuestCompleted', handleQuestCompleted);
-  addEventListener('GotItem', handleGotItem);
-  addEventListener('InventoryFull', handleInventoryFull);
-  addEventListener('RequestItem', handleRequestItem);
-  addEventListener('GameStarted', handleGameStarted);
+  useEffect(() => {
+    addEventListener('GameOver', handleGameOver);
+    addEventListener('MintThis', handleMintItem);
+    addEventListener('MintPiXLtez', handleMintPiXLtez);
+    addEventListener('ShareQuest', handleShareQuest);
+    addEventListener('QuestCompleted', handleQuestCompleted);
+    addEventListener('GotItem', handleGotItem);
+    addEventListener('InventoryFull', handleInventoryFull);
+    addEventListener('RequestItem', handleRequestItem);
+    addEventListener('GameStarted', handleGameStarted);
+
+    return () => {
+      removeEventListener('GameOver', handleGameOver);
+      removeEventListener('MintThis', handleMintItem);
+      removeEventListener('MintPiXLtez', handleMintPiXLtez);
+      removeEventListener('ShareQuest', handleShareQuest);
+      removeEventListener('QuestCompleted', handleQuestCompleted);
+      removeEventListener('GotItem', handleGotItem);
+      removeEventListener('InventoryFull', handleInventoryFull);
+      removeEventListener('RequestItem', handleRequestItem);
+      removeEventListener('GameStarted', handleGameStarted);
+    }
+  })
 
   const loadInventoryItems = async () => {
     try {
