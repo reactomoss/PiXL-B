@@ -25,7 +25,7 @@ const useGame = () => {
             name: "Health Potion",
             displayUri: "ipfs://QmNNtaYpP1N8tPdJCiDSCnzx8n8yEd8Qm6rx7vYwFji2qy",
           },//metadata as Metadata,
-          amount: value,
+          amount: value.toNumber(),
         };
       }
       return null;
