@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
-import { UnityProps } from 'types';
 import './Inventory.css';
 
 type InventoryProps = {
-  unity: UnityProps;
+  sendMessage: (gameObjectName: string, methodName: string, parameter?: any) => void;
 };
 
-const Inventory = ({ unity }: InventoryProps): JSX.Element => {
+const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
   const gameItems = useSelector((state: any) => state.gameState.gameItems);
 
   const getElementId = (item: any, index: number) => {
@@ -19,7 +18,7 @@ const Inventory = ({ unity }: InventoryProps): JSX.Element => {
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
-    unity.sendMessage('GameController', 'UseItem', 0);
+    sendMessage('GameController', 'UseItem', 0);
   };
 
   return (
