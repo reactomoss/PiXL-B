@@ -7,5 +7,6 @@ const Lang = {
   connectYourWallet: 'Please connect your wallet',
   pixltezMinted: 'PiXLtez has been successfully minted',
   pixltezMintFailed: 'Failed to mint PiXLtez',
+  deathToGraveyard: 'Your death has been added to The Graveyard',
 };
 export default Lang;

@@ -10,9 +10,9 @@ import './Unity.css';
 import useWallet from 'hooks/useWallet';
 import * as service from 'services';
 import usePixltez from 'hooks/usePixltez';
-import useGame from 'hooks/useGame';
+import useGameContract from 'hooks/useGameContract';
 import {
-  getEntryCoinAction,
+  setLoadingStateAction,
   setEntryCoinAction,
   setGameStartedAction,
   addGameItemsAction,
@@ -33,7 +33,7 @@ const UnityComponent = () => {
   const [running, setRunning] = useState(false);
   const { walletAddress } = useWallet();
   const { findEntryCoin } = usePixltez();
-  const { mintItem, getWalletItems } = useGame();
+  const { mintItem, getWalletTokens } = useGameContract();
   const unityContext = useUnityContext(unityConfig);
   const {
     unityProvider,
@@ -248,9 +248,9 @@ const UnityComponent = () => {
 
   const loadInventoryItems = async () => {
     try {
-      dispatch(getEntryCoinAction(true));
+      dispatch(setLoadingStateAction(true));
 
-      const item = await getWalletItems(0);
+      const item = await getWalletTokens(0);
       console.log('loadInventoryItems', item);
       if (item) {
         const { metadata } = item;
@@ -268,7 +268,7 @@ const UnityComponent = () => {
       console.error(error);
       toast.error(Lang.noEntryCoinFound);
     } finally {
-      dispatch(getEntryCoinAction(false));
+      dispatch(setLoadingStateAction(false));
     }
   }
 
@@ -276,7 +276,7 @@ const UnityComponent = () => {
     console.log('getInitialCoins')
     const getInitialCoins = async () => {
       try {
-        dispatch(getEntryCoinAction(true));
+        dispatch(setLoadingStateAction(true));
         if (await findEntryCoin()) {
           const coins = [
             {
@@ -293,7 +293,7 @@ const UnityComponent = () => {
         console.error(error);
         toast.error(Lang.noEntryCoinFound);
       } finally {
-        dispatch(getEntryCoinAction(false));
+        dispatch(setLoadingStateAction(false));
       }
     };
     walletAddress && getInitialCoins();

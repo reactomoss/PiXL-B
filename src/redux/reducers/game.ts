@@ -10,7 +10,7 @@ const initialState = {
 
 const gameReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case ApiConstants.API_GET_ENTRY_COINS: {
+    case ApiConstants.API_SET_LOADING_STATE: {
       return {
         ...state,
         loading: action.payload,

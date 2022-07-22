@@ -1,29 +1,27 @@
-import { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { IUnityContextHook } from 'react-unity-webgl/distribution/interfaces/unity-context-hook';
 import toast from 'react-hot-toast';
 import * as service from 'services';
+import { ItemType } from 'types';
+import Lang from 'lang/en';
+import useGameContract from 'hooks/useGameContract';
 import {
-  getEntryCoinAction,
-  setEntryCoinAction,
+  setLoadingStateAction,
   setGameStartedAction,
   addGameItemsAction,
-  setInventoryFullAction,
 } from 'redux/actions';
 
 const useUnityGame = (unityContext: IUnityContextHook) => {
   const dispatch = useDispatch();
-  const {
-    sendMessage,
-    addEventListener,
-    removeEventListener,
-  } = unityContext;
+  const { getWalletTokens } = useGameContract();
+  const { addEventListener, removeEventListener } = unityContext;
 
   const handleGameOver = async (userName, score) => {
     try {
       const result = await service.setGraveyardEntry(userName, score);
       if (result) {
-        toast.success('Your death has been added to The Graveyard');
+        toast.success(Lang.deathToGraveyard);
       }
     } catch (error) {
       console.error(error);
@@ -37,9 +35,9 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
 
   const loadInventoryItems = async () => {
     try {
-      dispatch(getEntryCoinAction(true));
+      dispatch(setLoadingStateAction(true));
 
-      const item = await getWalletItems(0);
+      const item = await getWalletTokens(0);
       console.log('loadInventoryItems', item);
       if (item) {
         const { metadata } = item;
@@ -57,19 +55,19 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
       console.error(error);
       toast.error(Lang.noEntryCoinFound);
     } finally {
-      dispatch(getEntryCoinAction(false));
+      dispatch(setLoadingStateAction(false));
     }
-  }
+  };
 
   useEffect(() => {
-    addEventListener('GameOver', handleGameOver);
     addEventListener('GameStarted', handleGameStarted);
+    addEventListener('GameOver', handleGameOver);
 
     return () => {
-      removeEventListener('GameOver', handleGameOver);
       removeEventListener('GameStarted', handleGameStarted);
-    }
-  })
+      removeEventListener('GameOver', handleGameOver);
+    };
+  });
 };
 
 export default useUnityGame;

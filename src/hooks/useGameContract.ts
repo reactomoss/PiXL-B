@@ -6,10 +6,10 @@ import { tzip16 } from "@taquito/tzip16";
 import { Contracts } from 'config';
 import { useTezosContext } from "./useTezosContext";
 
-const useGame = () => {
+const useGameContract = () => {
   const { tezos, walletAddress } = useTezosContext()!;
 
-  const getWalletItems = useCallback((tokenId: number) => {
+  const getWalletTokens = useCallback((tokenId: number) => {
     const walletItems = async () => {
       const contract = await tezos.contract.at(Contracts.PixlGame, compose(tzip16, tzip12));
       const storage: any = await contract.storage();
@@ -65,8 +65,8 @@ const useGame = () => {
 
   return {
     mintItem,
-    getWalletItems,
+    getWalletTokens,
   };
 };
 
-export default useGame;
+export default useGameContract;

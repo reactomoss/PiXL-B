@@ -1,7 +1,7 @@
 import * as ApiConstants from '../api';
 
-export const getEntryCoinAction = (status) => ({
-  type: ApiConstants.API_GET_ENTRY_COINS,
+export const setLoadingStateAction = (status) => ({
+  type: ApiConstants.API_SET_LOADING_STATE,
   payload: status,
 });
 
