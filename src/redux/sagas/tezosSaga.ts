@@ -5,11 +5,10 @@ import * as tzstats from '../../services/tzstats';
 function* getContractSaga(action) {
   try {
     const result = yield call(tzstats.getContract, action.payload);
-    if (result.status === 1) {
+    if (result.status === 200) {
       yield put({
         type: ApiConstants.API_GET_CONTRACT_SUCCESS,
-        result: result.result.data,
-        status: result.status,
+        payload: result.data,
       });
     } else {
       throw new Error('Failed to get contract data');

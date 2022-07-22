@@ -5,16 +5,19 @@ import { ItemType } from 'types';
 import toast from 'react-hot-toast';
 import * as service from 'services';
 import Lang from 'lang/en';
-import useGameContract from 'hooks/useGameContract';
+import useGameContract from './useGameContract';
+import usePixltez from './usePixltez';
 import {
   setLoadingStateAction,
   setGameStartedAction,
   addGameItemsAction,
+  setEntryCoinAction,
 } from 'redux/actions';
 
 const useUnityGame = (unityContext: IUnityContextHook) => {
   const dispatch = useDispatch();
   const { getWalletTokens } = useGameContract();
+  const { findEntryCoin } = usePixltez();
   const { addEventListener, removeEventListener } = unityContext;
 
   const handleGameOver = async (userName, score) => {
@@ -68,6 +71,33 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
       removeEventListener('GameOver', handleGameOver);
     };
   });
+
+  const getInitialCoins = async () => {
+    try {
+      dispatch(setLoadingStateAction(true));
+      if (await findEntryCoin()) {
+        const coins = [
+          {
+            id: 0,
+            name: Lang.entryCoinName,
+            alt: Lang.entryCoinAlt,
+            imageSrc:
+              'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
+          },
+        ];
+        dispatch(setEntryCoinAction(coins));
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(Lang.noEntryCoinFound);
+    } finally {
+      dispatch(setLoadingStateAction(false));
+    }
+  };
+
+  return {
+    getInitialCoins,
+  }
 };
 
 export default useUnityGame;

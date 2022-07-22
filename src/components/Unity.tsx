@@ -1,18 +1,14 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
-import toast, { Toaster } from 'react-hot-toast';
-import Lang from 'lang/en';
+import { Toaster } from 'react-hot-toast';
+import { Contracts } from 'config';
 import EntryCoin from './EntryCoin';
 import Inventory from './Inventory';
 import './Unity.css';
 import useWallet from 'hooks/useWallet';
-import usePixltez from 'hooks/usePixltez';
-import {
-  setLoadingStateAction,
-  setEntryCoinAction,
-} from 'redux/actions';
 import useUnityGame from 'hooks/useUnityGame';
+import { getGameContractAction } from 'redux/actions';
 
 const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
@@ -24,103 +20,59 @@ const unityConfig = {
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  const contract = useSelector((state: any) => state.contractState.contract);
+  const contracts = useSelector((state: any) => state.contractState.contracts);
   const { walletAddress } = useWallet();
-  const { findEntryCoin } = usePixltez();
   const unityContext = useUnityContext(unityConfig);
-  const {
-    unityProvider,
-    isLoaded,
-    loadingProgression,
-    requestFullscreen,
-    sendMessage,
-    addEventListener,
-  } = unityContext;
-  useUnityGame(unityContext);
-
-  const unity = useMemo(() => {
-    return {
-      sendMessage,
-      addEventListener,
-    }
-  }, [sendMessage, addEventListener])
+  const { getInitialCoins } = useUnityGame(unityContext);
+  const loadingPercentage = Math.round(unityContext.loadingProgression * 100);
 
   document.onfullscreenchange = function (event) {
-    requestFullscreen(false);
+    unityContext.requestFullscreen(false);
   };
 
   useEffect(() => {
-    sendMessage('AccessController', 'WalletConnected', walletAddress || '');
-  }, [walletAddress, sendMessage]);
+    unityContext.sendMessage('AccessController', 'WalletConnected', walletAddress || '');
+  }, [walletAddress, unityContext]);
 
   useEffect(() => {
-    console.log('getInitialCoins')
-    const getInitialCoins = async () => {
-      try {
-        dispatch(setLoadingStateAction(true));
-        if (await findEntryCoin()) {
-          const coins = [
-            {
-              id: 0,
-              name: Lang.entryCoinName,
-              alt: Lang.entryCoinAlt,
-              imageSrc:
-                'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
-            },
-          ];
-          dispatch(setEntryCoinAction(coins));
-        }
-      } catch (error) {
-        console.error(error);
-        toast.error(Lang.noEntryCoinFound);
-      } finally {
-        dispatch(setLoadingStateAction(false));
-      }
-    };
     walletAddress && getInitialCoins();
+  }, [dispatch, walletAddress, getInitialCoins]);
 
-    /*if (walletAddress) {
-      const gameItems = [
-        {
-            "name": "Health Potion",
-            "imageSrc": "https://cloudflare-ipfs.com/ipfs/QmNNtaYpP1N8tPdJCiDSCnzx8n8yEd8Qm6rx7vYwFji2qy",
-            "alt": "0",
-            "unityCardIdentifier": 1
-        }
-      ];
-      dispatch(setGameItemsAction(gameItems));
-    }*/
-  }, [dispatch, walletAddress, findEntryCoin]);
-
-  const loadingPercentage = Math.round(loadingProgression * 100);
+  useEffect(() => {
+    [Contracts.PixlGame, Contracts.Pixltez].forEach(address => {
+      if (!contracts.find(c => c.address === address)) {
+        dispatch(getGameContractAction(address))
+      }
+    });
+  }, [dispatch, contracts])
 
   return (
     <>
       <div className="unity-container">
         <Toaster />
         <Unity
-          unityProvider={unityProvider}
+          unityProvider={unityContext.unityProvider}
           style={{
             height: 540,
             width: 950,
             background: '#555',
           }}
         />
-        {isLoaded === false && (
+        {unityContext.isLoaded === false && (
           <div className="loading-overlay">
             <p>Loading... ({loadingPercentage}%)</p>
           </div>
         )}
       </div>
 
-      {isLoaded && (
+      {unityContext.isLoaded && (
         <div className="item-container">
-          {!gameState.gameStarted && 
-            <EntryCoin sendMessage={sendMessage}></EntryCoin>
-          }
-          {gameState.gameStarted && 
-            <Inventory sendMessage={sendMessage}></Inventory>
-          }
+          {!gameState.gameStarted && (
+            <EntryCoin sendMessage={unityContext.sendMessage}></EntryCoin>
+          )}
+          {gameState.gameStarted && (
+            <Inventory sendMessage={unityContext.sendMessage}></Inventory>
+          )}
         </div>
       )}
     </>

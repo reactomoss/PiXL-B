@@ -2,8 +2,7 @@ import * as ApiConstants from '../api';
 
 const initialState = {
   loading: false,
-  contract: null,
-  bigmaps: null,
+  contracts: [] as any[],
   error: null,
 };
 
@@ -16,12 +15,17 @@ const contractReducer = (state = initialState, action: any) => {
       };
     }
     case ApiConstants.API_GET_CONTRACT_SUCCESS: {
-      const contract = action.payload;
+      const contracts = [...state.contracts];
+      const index = contracts.findIndex(c => c.address === action.payload.address);
+      if (index >= 0) {
+        contracts.splice(index, 1);
+      }
+      contracts.push(action.payload);
+      console.log('contracts', contracts)
       return {
         ...state,
         loading: false,
-        contract,
-        bigmaps: contract.bigmaps,
+        contracts
       };
     }
     case ApiConstants.API_GET_CONTRACT_ERROR: {
