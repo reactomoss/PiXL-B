@@ -86,9 +86,9 @@ const UnityComponent = () => {
     sendMessage('AccessController', 'InsertCoin', tokenId);
   }, [sendMessage]);
 
-  const handleMintPiXLtez = () => {
-    unityItems.handleMintPiXLtez(20);
-  }
+  // const handleMintPiXLtez = () => {
+  //   unityItems.handleMintPiXLtez(20);
+  // }
 
   return (
     <>
