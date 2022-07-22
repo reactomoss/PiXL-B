@@ -1,14 +1,7 @@
-import {
-  GAME_ENTRY_COIN_LOAD,
-  GAME_SET_ENTRY_COINS,
-  GAME_SET_GAME_STARTED,
-  GAME_SET_GAME_ITEMS,
-  GAME_ADD_GAME_ITEMS,
-  GAME_SET_INVENTORY_FULL,
-} from '../action';
+import * as ApiConstants from '../api';
 
 const initialState = {
-  loadingStatus: false,
+  loading: false,
   gameStarted: false,
   entryCoins: [],
   gameItems: [],
@@ -17,37 +10,37 @@ const initialState = {
 
 const gameReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case GAME_ENTRY_COIN_LOAD: {
+    case ApiConstants.API_GET_ENTRY_COINS: {
       return {
         ...state,
-        loadingStatus: action.payload,
+        loading: action.payload,
       };
     }
-    case GAME_SET_ENTRY_COINS: {
+    case ApiConstants.API_SET_ENTRY_COINS: {
       return {
         ...state,
         entryCoins: action.payload,
       };
     }
-    case GAME_SET_GAME_STARTED: {
+    case ApiConstants.API_SET_GAME_STARTED: {
       return {
         ...state,
         gameStarted: action.payload,
       };
     }
-    case GAME_SET_GAME_ITEMS: {
+    case ApiConstants.API_SET_GAME_ITEMS: {
       return {
         ...state,
         gameItems: action.payload,
       };
     }
-    case GAME_ADD_GAME_ITEMS: {
+    case ApiConstants.API_ADD_GAME_ITEMS: {
       return {
         ...state,
         gameItems: [...state.gameItems, ...action.payload],
       };
     }
-    case GAME_SET_INVENTORY_FULL: {
+    case ApiConstants.API_SET_INVENTORY_FULL: {
       return {
         ...state,
         inventoryFull: action.payload,

@@ -1,19 +1,34 @@
-import { CA_SET_CONTRACT_DATA } from '../action';
+import * as ApiConstants from '../api';
 
 const initialState = {
-  loadingStatus: false,
+  loading: false,
   contract: null,
   bigmaps: null,
+  error: null,
 };
 
 const contractReducer = (state = initialState, action: any) => {
   switch (action.type) {
-    case CA_SET_CONTRACT_DATA: {
+    case ApiConstants.API_GET_CONTRACT_LOAD: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case ApiConstants.API_GET_CONTRACT_SUCCESS: {
       const contract = action.payload;
       return {
         ...state,
+        loading: false,
         contract,
         bigmaps: contract.bigmaps,
+      };
+    }
+    case ApiConstants.API_GET_CONTRACT_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
       };
     }
     default: {

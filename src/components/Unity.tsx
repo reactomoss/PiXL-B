@@ -11,15 +11,13 @@ import useWallet from 'hooks/useWallet';
 import * as service from 'services';
 import usePixltez from 'hooks/usePixltez';
 import useGame from 'hooks/useGame';
-import { Contracts } from 'config';
-import { getContract } from 'services/tzstats';
 import {
-  loadEntryCoinAction,
+  getEntryCoinAction,
   setEntryCoinAction,
   setGameStartedAction,
   addGameItemsAction,
   setInventoryFullAction,
-} from 'redux/action';
+} from 'redux/actions';
 
 const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
@@ -36,6 +34,7 @@ const UnityComponent = () => {
   const { walletAddress } = useWallet();
   const { findEntryCoin } = usePixltez();
   const { mintItem, getWalletItems } = useGame();
+  const unityContext = useUnityContext(unityConfig);
   const {
     unityProvider,
     isLoaded,
@@ -44,7 +43,7 @@ const UnityComponent = () => {
     sendMessage,
     addEventListener,
     removeEventListener,
-  } = useUnityContext(unityConfig);
+  } = unityContext;
 
   const unity = useMemo(() => {
     return {
@@ -249,7 +248,7 @@ const UnityComponent = () => {
 
   const loadInventoryItems = async () => {
     try {
-      dispatch(loadEntryCoinAction(true));
+      dispatch(getEntryCoinAction(true));
 
       const item = await getWalletItems(0);
       console.log('loadInventoryItems', item);
@@ -269,7 +268,7 @@ const UnityComponent = () => {
       console.error(error);
       toast.error(Lang.noEntryCoinFound);
     } finally {
-      dispatch(loadEntryCoinAction(false));
+      dispatch(getEntryCoinAction(false));
     }
   }
 
@@ -277,7 +276,7 @@ const UnityComponent = () => {
     console.log('getInitialCoins')
     const getInitialCoins = async () => {
       try {
-        dispatch(loadEntryCoinAction(true));
+        dispatch(getEntryCoinAction(true));
         if (await findEntryCoin()) {
           const coins = [
             {
@@ -294,7 +293,7 @@ const UnityComponent = () => {
         console.error(error);
         toast.error(Lang.noEntryCoinFound);
       } finally {
-        dispatch(loadEntryCoinAction(false));
+        dispatch(getEntryCoinAction(false));
       }
     };
     walletAddress && getInitialCoins();

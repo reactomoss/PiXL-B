@@ -1,5 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
-import * as Api from '../action';
+import * as ApiConstants from '../api';
 import * as tzstats from '../../services/tzstats';
 
 function* getContractSaga(action) {
@@ -7,7 +7,7 @@ function* getContractSaga(action) {
     const result = yield call(tzstats.getContract, action.payload);
     if (result.status === 1) {
       yield put({
-        type: Api.API_GET_CONTRACT_SUCCESS,
+        type: ApiConstants.API_GET_CONTRACT_SUCCESS,
         result: result.result.data,
         status: result.status,
       });
@@ -16,12 +16,12 @@ function* getContractSaga(action) {
     }
   } catch (error) {
     yield put({
-      type: Api.API_GET_CONTRACT_ERROR,
+      type: ApiConstants.API_GET_CONTRACT_ERROR,
       error: error,
     });
   }
 }
 
 export default function* tezosSaga() {
-  yield takeEvery(Api.API_GET_CONTRACT_LOAD, getContractSaga);
+  yield takeEvery(ApiConstants.API_GET_CONTRACT_LOAD, getContractSaga);
 }
