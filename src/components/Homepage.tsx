@@ -12,7 +12,7 @@ function Homepage_(props: HomepageProps, ref: HTMLElementRefOf<'div'>) {
   const navigate = useNavigate();
 
   const handleStartGame = (e) => {
-    e.preventDefaults();
+    e.preventDefault();
     navigate('/play');
   };
 
