@@ -15,13 +15,13 @@ const contractReducer = (state = initialState, action: any) => {
       };
     }
     case ApiConstants.API_GET_CONTRACT_SUCCESS: {
+      const { contract } = action.payload;
       const contracts = [...state.contracts];
-      const index = contracts.findIndex(c => c.address === action.payload.address);
+      const index = contracts.findIndex((c: any) => c.contract.address === contract.address);
       if (index >= 0) {
         contracts.splice(index, 1);
       }
       contracts.push(action.payload);
-      console.log('contracts', contracts)
       return {
         ...state,
         loading: false,

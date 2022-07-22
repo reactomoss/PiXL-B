@@ -27,3 +27,4 @@ export interface GraveyardEntry {
   enemy: string,
   location: string
 }
+

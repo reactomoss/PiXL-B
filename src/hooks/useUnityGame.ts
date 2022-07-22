@@ -6,18 +6,15 @@ import toast from 'react-hot-toast';
 import * as service from 'services';
 import Lang from 'lang/en';
 import useGameContract from './useGameContract';
-import usePixltez from './usePixltez';
 import {
   setLoadingStateAction,
   setGameStartedAction,
   addGameItemsAction,
-  setEntryCoinAction,
 } from 'redux/actions';
 
 const useUnityGame = (unityContext: IUnityContextHook) => {
   const dispatch = useDispatch();
   const { getWalletTokens } = useGameContract();
-  const { findEntryCoin } = usePixltez();
   const { addEventListener, removeEventListener } = unityContext;
 
   const handleGameOver = async (userName, score) => {
@@ -32,11 +29,12 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
   };
 
   const handleGameStarted = () => {
+    console.log('handleGameStarted')
     dispatch(setGameStartedAction(true));
-    loadInventoryItems();
+    getInventoryItems();
   };
 
-  const loadInventoryItems = async () => {
+  const getInventoryItems = async () => {
     try {
       dispatch(setLoadingStateAction(true));
 
@@ -72,7 +70,8 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
     };
   });
 
-  const getInitialCoins = async () => {
+  /* //Get entry coins from contract directly.
+  const getEntryCoins = async () => {
     try {
       dispatch(setLoadingStateAction(true));
       if (await findEntryCoin()) {
@@ -85,7 +84,7 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
               'https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP',
           },
         ];
-        dispatch(setEntryCoinAction(coins));
+        dispatch(setEntryCoinsAction(coins));
       }
     } catch (error) {
       console.error(error);
@@ -93,10 +92,9 @@ const useUnityGame = (unityContext: IUnityContextHook) => {
     } finally {
       dispatch(setLoadingStateAction(false));
     }
-  };
+  };*/
 
   return {
-    getInitialCoins,
   }
 };
 

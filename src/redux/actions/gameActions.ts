@@ -5,7 +5,12 @@ export const setLoadingStateAction = (status) => ({
   payload: status,
 });
 
-export const setEntryCoinAction = (coins) => ({
+export const getEntryCoinsAction = (id: string, key: string) => ({
+  type: ApiConstants.API_GET_ENTRY_COINS_LOAD,
+  payload: { id, key },
+});
+
+export const setEntryCoinsAction = (coins) => ({
   type: ApiConstants.API_SET_ENTRY_COINS,
   payload: coins,
 });

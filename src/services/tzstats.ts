@@ -21,7 +21,7 @@ export const getBigmapValues = (id: string) => {
   return axios.get(url)
 }
 
-export const getBigmapValue = (id: string, key: string) => {
+export const getBigmapValue = ({id, key}: {id: string, key: string}) => {
   const url = `${TZSTATS_URL}/explorer/bigmap/${id}/${key}`;
   return axios.get(url)
 }

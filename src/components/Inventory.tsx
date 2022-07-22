@@ -23,7 +23,7 @@ const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
 
   return (
     <>
-      {gameItems.map((item, index) => (
+      {gameItems && gameItems.map((item, index) => (
         <div
           key={index}
           id={getElementId(item, index)}
