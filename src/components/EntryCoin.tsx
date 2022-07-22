@@ -10,13 +10,8 @@ const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
   const dispatch = useDispatch();
   const entryCoins = useSelector((state: any) => state.gameState.entryCoins);
 
-  const getElementId = (index: number) => {
-    return `entrycoin_${index}`;
-  }
-
-  const handleItemClicked = (coin: ItemType, index: number) => {
-    const elementId = getElementId(index);
-    const element = document.getElementById(elementId);
+  const handleItemClicked = () => {
+    const element = document.getElementById('entrycoin');
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
@@ -30,11 +25,10 @@ const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
 
   return (
     <>
-      {entryCoins > 0 && new Array(entryCoins).fill(0).map((coin, index) => (
+      {entryCoins && (
         <div
-          key={index}
-          id={getElementId(index)}
-          onClick={(e) => handleItemClicked(coin, index)}
+          id='entrycoin'
+          onClick={(e) => handleItemClicked()}
           className="card entry-card"
         >
           <img
@@ -48,7 +42,7 @@ const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
             }}
           />
         </div>
-      ))}
+      )}
     </>
   );
 };

@@ -3,7 +3,7 @@ import * as ApiConstants from '../api';
 const initialState = {
   loading: false,
   gameStarted: false,
-  entryCoins: 0,
+  entryCoins: null,
   gameItems: [],
   inventoryFull: false,
 };
@@ -58,6 +58,19 @@ const gameReducer = (state = initialState, action: any) => {
         ...state,
         loading: false,
         entryCoins: Number(action.payload.value),
+      }
+    }
+    case ApiConstants.API_GET_GAME_ITEMS_LOAD: {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case ApiConstants.API_GET_GAME_ITEMS_SUCCESS: {
+      console.log('gameItems', action.payload)
+      return {
+        ...state,
+        loading: false,
       }
     }
     default: {
