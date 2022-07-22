@@ -1,14 +1,13 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { IUnityContextHook } from 'react-unity-webgl/distribution/interfaces/unity-context-hook';
 import toast from 'react-hot-toast';
 import * as service from 'services';
+import Lang from 'lang/en';
+import useWallet from './useWallet';
 
 const useUnityQuest = (unityContext: IUnityContextHook) => {
-  const {
-    sendMessage,
-    addEventListener,
-    removeEventListener,
-  } = unityContext;
+  const { walletAddress } = useWallet();
+  const { addEventListener, removeEventListener } = unityContext;
 
   const handleShareQuest = async (questDetails, Id) => {
     const result = await service.shareQuest(questDetails, Id).catch((error) => {
@@ -25,12 +24,7 @@ const useUnityQuest = (unityContext: IUnityContextHook) => {
       toast.error(Lang.connectYourWallet);
       return;
     }
-    if (running) {
-      return;
-    }
     try {
-      setRunning(true);
-
       const result = await service.updateQuestStatus(
         questId,
         walletAddress,
@@ -43,8 +37,6 @@ const useUnityQuest = (unityContext: IUnityContextHook) => {
     } catch (err) {
       console.error(err);
       toast.error('Failed to update quest state');
-    } finally {
-      setRunning(false);
     }
   };
 
@@ -55,8 +47,8 @@ const useUnityQuest = (unityContext: IUnityContextHook) => {
     return () => {
       removeEventListener('ShareQuest', handleShareQuest);
       removeEventListener('QuestCompleted', handleQuestCompleted);
-    }
-  })
+    };
+  });
 };
 
 export default useUnityQuest;
