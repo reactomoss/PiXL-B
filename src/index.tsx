@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { PlasmicRootProvider } from "@plasmicapp/loader-react";
+import { PLASMIC } from './plasmic-init';
 import 'animate.css';
 import './index.css';
 import App from './App';
@@ -11,9 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Providers>
-      <App />
-    </Providers>
+    <PlasmicRootProvider loader={PLASMIC}>
+      <Providers>
+        <App />
+      </Providers>
+    </PlasmicRootProvider>
   </React.StrictMode>
 );
 
