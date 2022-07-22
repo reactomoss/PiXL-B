@@ -11,6 +11,8 @@ import useWallet from 'hooks/useWallet';
 import * as service from 'services';
 import usePixltez from 'hooks/usePixltez';
 import useGame from 'hooks/useGame';
+import { Contracts } from 'config';
+import { getContract } from 'services/tzstats';
 import {
   loadEntryCoinAction,
   setEntryCoinAction,
@@ -29,6 +31,7 @@ const unityConfig = {
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
+  const contract = useSelector((state: any) => state.contractState.contract);
   const [running, setRunning] = useState(false);
   const { walletAddress } = useWallet();
   const { findEntryCoin } = usePixltez();

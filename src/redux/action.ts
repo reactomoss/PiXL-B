@@ -1,4 +1,7 @@
-export const CA_SET_CONTRACT_DATA = 'CA_SET_CONTRACT_DATA';
+export const API_GET_CONTRACT_LOAD = 'API_GET_CONTRACT_LOAD';
+export const API_GET_CONTRACT_SUCCESS = 'API_GET_CONTRACT_SUCCESS';
+export const API_GET_CONTRACT_ERROR = 'API_GET_CONTRACT_ERROR';
+export const API_SET_CONTRACT_DATA = 'CA_SET_CONTRACT_DATA';
 
 export const GAME_ENTRY_COIN_LOAD = 'GAME_ENTRY_COIN_LOAD';
 export const GAME_SET_ENTRY_COINS = 'GAME_SET_ENTRY_COINS';
@@ -8,7 +11,7 @@ export const GAME_ADD_GAME_ITEMS = 'GAME_ADD_GAME_ITEMS';
 export const GAME_SET_INVENTORY_FULL = 'GAME_SET_INVENTORY_FULL';
 
 export const setContractAction = (contract) => ({
-  type: CA_SET_CONTRACT_DATA,
+  type: API_SET_CONTRACT_DATA,
   payload: contract,
 });
 
