@@ -38,7 +38,7 @@ import { useScreenVariants as useScreenVariants_38ZwnZarMk9Gci } from './Plasmic
 import '@plasmicapp/react-web/lib/plasmic.css';
 
 import projectcss from './plasmic_pi_xl_b.module.css'; // plasmic-import: hyV3Qh6omoZfLaxr2maQHq/projectcss
-import sty from './PlasmicNavBar.module.css'; // plasmic-import: jXtM3YjACR/css
+import sty from './PlasmicNavBars.module.css'; // plasmic-import: jXtM3YjACR/css
 
 import ChecksvgIcon from './icons/PlasmicIcon__Checksvg'; // plasmic-import: QqqMrdFXzVjwWb/icon
 import Icon4Icon from './icons/PlasmicIcon__Icon4'; // plasmic-import: OSUzn4xWLpgWdF/icon
