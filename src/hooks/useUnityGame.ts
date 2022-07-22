@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { IUnityContextHook } from 'react-unity-webgl/distribution/interfaces/unity-context-hook';
+import { ItemType } from 'types';
 import toast from 'react-hot-toast';
 import * as service from 'services';
-import { ItemType } from 'types';
 import Lang from 'lang/en';
 import useGameContract from 'hooks/useGameContract';
 import {
