@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   PlasmicNavBar,
   DefaultNavBarProps,
-} from './plasmic/pi_xl_b/PlasmicNavBar';
+} from './plasmic/pi_xl_b/PlasmicNavBars';
 import { HTMLElementRefOf } from '@plasmicapp/react-web';
 import useWallet from 'hooks/useWallet';
 
