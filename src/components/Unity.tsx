@@ -86,8 +86,19 @@ const UnityComponent = () => {
     sendMessage('AccessController', 'InsertCoin', tokenId);
   }, [sendMessage]);
 
+  const handleMintPiXLtez = () => {
+    unityItems.handleMintPiXLtez(20);
+  }
+
   return (
     <>
+      {/* <div>
+        {gameState.gameStarted && (
+          <div className="debug-menu">
+            <button onClick={handleMintPiXLtez}>Mint PiXLtez</button>
+          </div>
+        )}
+      </div> */}
       <div className="unity-container">
         <Toaster />
         <Unity
@@ -111,7 +122,9 @@ const UnityComponent = () => {
             <EntryCoin insertCoin={insertCoin}></EntryCoin>
           )}
           {gameState.gameStarted && (
-            <Inventory consumeItem={consumeItem}></Inventory>
+            <>              
+              <Inventory consumeItem={consumeItem}></Inventory>
+            </>
           )}
         </div>
       )}
