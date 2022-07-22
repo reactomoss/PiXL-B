@@ -1,12 +1,11 @@
-import { ItemType } from '../types';
 import { useDispatch, useSelector } from 'react-redux';
 import { setEntryCoinsAction } from 'redux/actions';
 
 type EntryCoinProps = {
-  sendMessage: (gameObjectName: string, methodName: string, parameter?: any) => void;
+  insertCoin: (tokenId: any) => void;
 };
 
-const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
+const EntryCoin = ({ insertCoin }: EntryCoinProps): JSX.Element => {
   const dispatch = useDispatch();
   const entryCoins = useSelector((state: any) => state.gameState.entryCoins);
 
@@ -16,7 +15,7 @@ const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
       element.className = 'card animate__animated animate__backOutUp';
     }
 
-    sendMessage('AccessController', 'InsertCoin', 0);
+    insertCoin(0);
 
     setTimeout(() => {
       dispatch(setEntryCoinsAction(0));
@@ -25,7 +24,7 @@ const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
 
   return (
     <>
-      {entryCoins && (
+      {entryCoins ? (
         <div
           id='entrycoin'
           onClick={(e) => handleItemClicked()}
@@ -42,6 +41,8 @@ const EntryCoin = ({ sendMessage }: EntryCoinProps): JSX.Element => {
             }}
           />
         </div>
+      ): (
+        <></>
       )}
     </>
   );

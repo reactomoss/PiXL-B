@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 import { Toaster } from 'react-hot-toast';
@@ -36,8 +36,8 @@ const UnityComponent = () => {
   };
 
   useEffect(() => {
-    unityContext.sendMessage('AccessController', 'WalletConnected', walletAddress || '');
-  }, [walletAddress, unityContext]);
+    sendMessage('AccessController', 'WalletConnected', walletAddress || '');
+  }, [walletAddress, sendMessage]);
 
   useEffect(() => {
     [Contracts.PixlGame, Contracts.Pixltez].forEach(address => {
@@ -78,6 +78,14 @@ const UnityComponent = () => {
     };
   });
 
+  const consumeItem = useCallback((tokenId) => {
+    sendMessage('GameController', 'UseItem', tokenId);
+  }, [sendMessage]);
+
+  const insertCoin = useCallback((tokenId) => {
+    sendMessage('AccessController', 'InsertCoin', tokenId);
+  }, [sendMessage]);
+
   return (
     <>
       <div className="unity-container">
@@ -100,10 +108,10 @@ const UnityComponent = () => {
       {unityContext.isLoaded && (
         <div className="item-container">
           {!gameState.gameStarted && (
-            <EntryCoin sendMessage={unityContext.sendMessage}></EntryCoin>
+            <EntryCoin insertCoin={insertCoin}></EntryCoin>
           )}
           {gameState.gameStarted && (
-            <Inventory sendMessage={unityContext.sendMessage}></Inventory>
+            <Inventory consumeItem={consumeItem}></Inventory>
           )}
         </div>
       )}

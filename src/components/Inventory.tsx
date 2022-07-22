@@ -1,9 +1,10 @@
 import { GameTokens } from 'config';
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import './Inventory.css';
 
 type InventoryProps = {
-  sendMessage: (gameObjectName: string, methodName: string, parameter?: any) => void;
+  consumeItem: (tokenId: any) => void;
 };
 
 const getItemImage = (tokenId) => {
@@ -15,8 +16,20 @@ const getItemImage = (tokenId) => {
   return '';
 }
 
-const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
+const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
   const gameItems = useSelector((state: any) => state.gameState.gameItems);
+
+  const invenItems = useMemo(() => {
+    console.log('gameItems', gameItems)
+    return gameItems.reduce((prev, item) => {
+      const amount = Number(item.amount);
+      if (amount > 0) {
+        prev = prev.concat(new Array(amount).fill(item));
+      }
+      return prev;      
+    }, [])
+  }, [gameItems])
+  console.log('invenItems', invenItems)
 
   const getElementId = (item: any, index: number) => {
     return `inventory_item_${item.tokenId}_${index}`;
@@ -28,12 +41,12 @@ const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
-    sendMessage('GameController', 'UseItem', item.tokenId);
+    consumeItem(item.tokenId);
   };
 
   return (
     <>
-      {gameItems && gameItems.map((item, index) => (
+      {invenItems.map((item, index) => (
         <div
           key={index}
           id={getElementId(item, index)}
