@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=VT323%3Aital%2Cwght%400%2C400&family=Montserrat%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Ultra%3Aital%2Cwght%400%2C400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Inconsolata%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=VT323%3Aital%2Cwght%400%2C400&family=Montserrat%3Aital%2Cwght%400%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C900&family=Ultra%3Aital%2Cwght%400%2C400&display=swap');
 
 .plasmic_tokens {
   --token-ONop_f1Tqx8LZ2: #3291ff;
@@ -20,7 +20,7 @@
 }
 
 .plasmic_default_styles {
-  --mixin-oqrdifeAEvAmUo_font-family: "Inter";
+  --mixin-oqrdifeAEvAmUo_font-family: 'Inter';
   --mixin-oqrdifeAEvAmUo_font-size: 16px;
   --mixin-oqrdifeAEvAmUo_font-weight: 400;
   --mixin-oqrdifeAEvAmUo_font-style: normal;
@@ -53,7 +53,7 @@
   --mixin-QBQfc449vQZoNE_line-height: 1.2;
   --mixin-QBQfc449vQZoNE_letter-spacing: -0.8px;
   --mixin-QBQfc449vQZoNE_white-space: pre-wrap;
-  --mixin-4qunHAaKtfAtMQ_font-family: "Inter";
+  --mixin-4qunHAaKtfAtMQ_font-family: 'Inter';
   --mixin-4qunHAaKtfAtMQ_color: #000000;
   --mixin-4qunHAaKtfAtMQ_font-size: 24px;
   --mixin-4qunHAaKtfAtMQ_font-weight: 600;
@@ -77,20 +77,20 @@
   --mixin-haMMXONw3bG_iX_border-bottom-right-radius: 3px;
   --mixin-haMMXONw3bG_iX_border-top-left-radius: 3px;
   --mixin-haMMXONw3bG_iX_border-top-right-radius: 3px;
-  --mixin-haMMXONw3bG_iX_font-family: "Inconsolata";
+  --mixin-haMMXONw3bG_iX_font-family: 'Inconsolata';
   --mixin-haMMXONw3bG_iX_padding-bottom: 1px;
   --mixin-haMMXONw3bG_iX_padding-left: 4px;
   --mixin-haMMXONw3bG_iX_padding-right: 4px;
   --mixin-haMMXONw3bG_iX_padding-top: 1px;
   --mixin-haMMXONw3bG_iX_white-space: pre-wrap;
-  --mixin-rPc6iWhRSksBvD_font-family: "Inter";
+  --mixin-rPc6iWhRSksBvD_font-family: 'Inter';
   --mixin-rPc6iWhRSksBvD_color: #000000;
   --mixin-rPc6iWhRSksBvD_font-size: 20px;
   --mixin-rPc6iWhRSksBvD_font-weight: 600;
   --mixin-rPc6iWhRSksBvD_letter-spacing: -0.3px;
   --mixin-rPc6iWhRSksBvD_line-height: 1.5;
   --mixin-rPc6iWhRSksBvD_white-space: pre-wrap;
-  --mixin-HPCNxF-DL9Bfa2_font-family: "Inter";
+  --mixin-HPCNxF-DL9Bfa2_font-family: 'Inter';
   --mixin-HPCNxF-DL9Bfa2_color: #000000;
   --mixin-HPCNxF-DL9Bfa2_font-size: 16px;
   --mixin-HPCNxF-DL9Bfa2_font-weight: 600;
@@ -119,7 +119,7 @@
   --mixin-j5S7B9o6u5v7mF_border-bottom-right-radius: 3px;
   --mixin-j5S7B9o6u5v7mF_border-top-left-radius: 3px;
   --mixin-j5S7B9o6u5v7mF_border-top-right-radius: 3px;
-  --mixin-j5S7B9o6u5v7mF_font-family: "Inconsolata";
+  --mixin-j5S7B9o6u5v7mF_font-family: 'Inconsolata';
   --mixin-j5S7B9o6u5v7mF_padding-bottom: 3px;
   --mixin-j5S7B9o6u5v7mF_padding-left: 6px;
   --mixin-j5S7B9o6u5v7mF_padding-right: 6px;

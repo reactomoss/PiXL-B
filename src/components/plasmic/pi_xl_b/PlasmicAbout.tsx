@@ -31,7 +31,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
-import NavBar from '../../NavBar'; // plasmic-import: jXtM3YjACR/component
+import NavBars from '../../NavBars'; // plasmic-import: jXtM3YjACR/component
 import Button from '../../Button'; // plasmic-import: l1cZrxXjGJlGQf/component
 
 import { useScreenVariants as useScreenVariants_38ZwnZarMk9Gci } from './PlasmicGlobalVariant__Screen'; // plasmic-import: 38zwnZARMk9Gci/globalVariant
@@ -44,7 +44,7 @@ import sty from './PlasmicAbout.module.css'; // plasmic-import: Xw8-kYruc_9/css
 import ChecksvgIcon from './icons/PlasmicIcon__Checksvg'; // plasmic-import: QqqMrdFXzVjwWb/icon
 import Icon4Icon from './icons/PlasmicIcon__Icon4'; // plasmic-import: OSUzn4xWLpgWdF/icon
 import _227601RightArrowIconsvgIcon from './icons/PlasmicIcon___227601RightArrowIconsvg'; // plasmic-import: rqUC0und_eIcLs/icon
-import screenShot20220717At62321PMpngLLqsxA6Fg from './images/screenShot20220717At62321PMpng.png'; // plasmic-import: LLqsxA6fg/picture
+import whatIsPiXlWxyJvupSw from './images/whatIsPiXl.png'; // plasmic-import: WXYJvupSw/picture
 import westworldpngFWe9DmVhuHLcP from './images/westworldpng.png'; // plasmic-import: FWe_9DMVhuHLcP/picture
 import redDeadLogopngPpym0PmpOhdCEe from './images/redDeadLogopng.png'; // plasmic-import: ppym0PmpOhdCEe/picture
 import algoLogopngCv6PrXtHwIMzrk from './images/algoLogopng.png'; // plasmic-import: Cv6PrXTHwIMzrk/picture
@@ -71,7 +71,7 @@ export const PlasmicAbout__ArgProps = new Array<ArgPropType>();
 
 export type PlasmicAbout__OverridesType = {
   root?: p.Flex<'div'>;
-  navBar?: p.Flex<typeof NavBar>;
+  navBars?: p.Flex<typeof NavBars>;
   section1?: p.Flex<'section'>;
   container?: p.Flex<'div'>;
   flexBox?: p.Flex<'div'>;
@@ -198,10 +198,10 @@ function PlasmicAbout__RenderFunc(props: {
             sty.root
           )}
         >
-          <NavBar
-            data-plasmic-name={'navBar'}
-            data-plasmic-override={overrides.navBar}
-            className={classNames('__wab_instance', sty.navBar)}
+          <NavBars
+            data-plasmic-name={'navBars'}
+            data-plasmic-override={overrides.navBars}
+            className={classNames('__wab_instance', sty.navBars)}
           />
 
           <section
@@ -238,9 +238,9 @@ function PlasmicAbout__RenderFunc(props: {
                       displayWidth={'auto' as const}
                       loading={'lazy' as const}
                       src={{
-                        src: screenShot20220717At62321PMpngLLqsxA6Fg,
-                        fullWidth: 511,
-                        fullHeight: 796,
+                        src: whatIsPiXlWxyJvupSw,
+                        fullWidth: 300,
+                        fullHeight: 600,
                         aspectRatio: undefined,
                       }}
                     />
@@ -263,7 +263,7 @@ function PlasmicAbout__RenderFunc(props: {
                         sty.mainHeading
                       )}
                     >
-                      {'The First Play-To-Earn RPG Game on Blockchain'}
+                      {'Discover the Tezos Ecosystem \nin the PiXL Metaverse'}
                     </h1>
 
                     <p
@@ -360,138 +360,140 @@ function PlasmicAbout__RenderFunc(props: {
             </div>
           </section>
 
-          <p.Stack
-            as={'section'}
-            data-plasmic-name={'section2'}
-            data-plasmic-override={overrides.section2}
-            hasGap={true}
-            className={classNames(projectcss.all, sty.section2)}
-          >
-            <h2
-              data-plasmic-name={'subHeading'}
-              data-plasmic-override={overrides.subHeading}
-              className={classNames(
-                projectcss.all,
-                projectcss.h2,
-                projectcss.__wab_text,
-                sty.subHeading
-              )}
-            >
-              {'Inspired by:'}
-            </h2>
-
+          {true ? (
             <p.Stack
-              as={'div'}
-              data-plasmic-name={'logoContainer'}
-              data-plasmic-override={overrides.logoContainer}
+              as={'section'}
+              data-plasmic-name={'section2'}
+              data-plasmic-override={overrides.section2}
               hasGap={true}
-              className={classNames(projectcss.all, sty.logoContainer)}
+              className={classNames(projectcss.all, sty.section2)}
             >
-              <p.PlasmicImg
-                alt={''}
-                className={classNames(sty.img__bsYfY)}
-                displayHeight={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('auto' as const)
-                    : ('auto' as const)
-                }
-                displayMaxHeight={'none' as const}
-                displayMaxWidth={'100%' as const}
-                displayMinHeight={'0' as const}
-                displayMinWidth={'0' as const}
-                displayWidth={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('100px' as const)
-                    : ('180px' as const)
-                }
-                loading={'lazy' as const}
-                src={{
-                  src: westworldpngFWe9DmVhuHLcP,
-                  fullWidth: 175,
-                  fullHeight: 122,
-                  aspectRatio: undefined,
-                }}
-              />
+              <h2
+                data-plasmic-name={'subHeading'}
+                data-plasmic-override={overrides.subHeading}
+                className={classNames(
+                  projectcss.all,
+                  projectcss.h2,
+                  projectcss.__wab_text,
+                  sty.subHeading
+                )}
+              >
+                {'Inspired by:'}
+              </h2>
 
-              <p.PlasmicImg
-                alt={''}
-                className={classNames(sty.img__eqgeI)}
-                displayHeight={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('auto' as const)
-                    : ('85px' as const)
-                }
-                displayMaxHeight={'none' as const}
-                displayMaxWidth={'100%' as const}
-                displayMinHeight={'0' as const}
-                displayMinWidth={'0' as const}
-                displayWidth={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('100px' as const)
-                    : ('180px' as const)
-                }
-                loading={'lazy' as const}
-                src={{
-                  src: redDeadLogopngPpym0PmpOhdCEe,
-                  fullWidth: 175,
-                  fullHeight: 83,
-                  aspectRatio: undefined,
-                }}
-              />
+              <p.Stack
+                as={'div'}
+                data-plasmic-name={'logoContainer'}
+                data-plasmic-override={overrides.logoContainer}
+                hasGap={true}
+                className={classNames(projectcss.all, sty.logoContainer)}
+              >
+                <p.PlasmicImg
+                  alt={''}
+                  className={classNames(sty.img__bsYfY)}
+                  displayHeight={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('auto' as const)
+                      : ('auto' as const)
+                  }
+                  displayMaxHeight={'none' as const}
+                  displayMaxWidth={'100%' as const}
+                  displayMinHeight={'0' as const}
+                  displayMinWidth={'0' as const}
+                  displayWidth={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('100px' as const)
+                      : ('180px' as const)
+                  }
+                  loading={'lazy' as const}
+                  src={{
+                    src: westworldpngFWe9DmVhuHLcP,
+                    fullWidth: 175,
+                    fullHeight: 122,
+                    aspectRatio: undefined,
+                  }}
+                />
 
-              <p.PlasmicImg
-                alt={''}
-                className={classNames(sty.img__t3Vt)}
-                displayHeight={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('auto' as const)
-                    : ('66px' as const)
-                }
-                displayMaxHeight={'none' as const}
-                displayMaxWidth={'100%' as const}
-                displayMinHeight={'0' as const}
-                displayMinWidth={'0' as const}
-                displayWidth={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('120px' as const)
-                    : ('157px' as const)
-                }
-                loading={'lazy' as const}
-                src={{
-                  src: algoLogopngCv6PrXtHwIMzrk,
-                  fullWidth: 175,
-                  fullHeight: 83,
-                  aspectRatio: undefined,
-                }}
-              />
+                <p.PlasmicImg
+                  alt={''}
+                  className={classNames(sty.img__eqgeI)}
+                  displayHeight={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('auto' as const)
+                      : ('85px' as const)
+                  }
+                  displayMaxHeight={'none' as const}
+                  displayMaxWidth={'100%' as const}
+                  displayMinHeight={'0' as const}
+                  displayMinWidth={'0' as const}
+                  displayWidth={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('100px' as const)
+                      : ('180px' as const)
+                  }
+                  loading={'lazy' as const}
+                  src={{
+                    src: redDeadLogopngPpym0PmpOhdCEe,
+                    fullWidth: 175,
+                    fullHeight: 83,
+                    aspectRatio: undefined,
+                  }}
+                />
 
-              <p.PlasmicImg
-                alt={''}
-                className={classNames(sty.img__mc6Xj)}
-                displayHeight={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('auto' as const)
-                    : ('80.999px' as const)
-                }
-                displayMaxHeight={'none' as const}
-                displayMaxWidth={'100%' as const}
-                displayMinHeight={'0' as const}
-                displayMinWidth={'0' as const}
-                displayWidth={
-                  hasVariant(globalVariants, 'screen', 'mobileOnly')
-                    ? ('100px' as const)
-                    : ('164.999px' as const)
-                }
-                loading={'lazy' as const}
-                src={{
-                  src: encodeLogopngF7ZyJukvEdwxGj,
-                  fullWidth: 175,
-                  fullHeight: 83,
-                  aspectRatio: undefined,
-                }}
-              />
+                <p.PlasmicImg
+                  alt={''}
+                  className={classNames(sty.img__t3Vt)}
+                  displayHeight={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('auto' as const)
+                      : ('66px' as const)
+                  }
+                  displayMaxHeight={'none' as const}
+                  displayMaxWidth={'100%' as const}
+                  displayMinHeight={'0' as const}
+                  displayMinWidth={'0' as const}
+                  displayWidth={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('120px' as const)
+                      : ('157px' as const)
+                  }
+                  loading={'lazy' as const}
+                  src={{
+                    src: algoLogopngCv6PrXtHwIMzrk,
+                    fullWidth: 175,
+                    fullHeight: 83,
+                    aspectRatio: undefined,
+                  }}
+                />
+
+                <p.PlasmicImg
+                  alt={''}
+                  className={classNames(sty.img__mc6Xj)}
+                  displayHeight={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('auto' as const)
+                      : ('80.999px' as const)
+                  }
+                  displayMaxHeight={'none' as const}
+                  displayMaxWidth={'100%' as const}
+                  displayMinHeight={'0' as const}
+                  displayMinWidth={'0' as const}
+                  displayWidth={
+                    hasVariant(globalVariants, 'screen', 'mobileOnly')
+                      ? ('100px' as const)
+                      : ('164.999px' as const)
+                  }
+                  loading={'lazy' as const}
+                  src={{
+                    src: encodeLogopngF7ZyJukvEdwxGj,
+                    fullWidth: 175,
+                    fullHeight: 83,
+                    aspectRatio: undefined,
+                  }}
+                />
+              </p.Stack>
             </p.Stack>
-          </p.Stack>
+          ) : null}
 
           <section
             data-plasmic-name={'section3'}
@@ -837,7 +839,7 @@ function PlasmicAbout__RenderFunc(props: {
                   sty.subHeading3
                 )}
               >
-                {'RoadMap'}
+                {'Quests'}
               </h2>
 
               <div
@@ -880,7 +882,7 @@ function PlasmicAbout__RenderFunc(props: {
                               sty.li__ryklr
                             )}
                           >
-                            {'Ticket To Ride '}
+                            {'Projkt Momz'}
                           </li>
                         </ol>
                       }
@@ -897,7 +899,7 @@ function PlasmicAbout__RenderFunc(props: {
                     )}
                   >
                     {
-                      'The first major bit of functionality will be to allow certain VIPs, influencers and whales to get early access to the game world. So our first NFT is the Ticket to Ride. When purchased, the owner will be able to board the train and travel to Algo Ranchero'
+                      'Your mom in PiXL is a hacktivists, tired of the current political and corporate world climate, has created an underground network of the Tezos ecosystem members. Based on PRJKTNEON - one of the earliest projects on Tezos. '
                     }
                   </p>
                 </div>
@@ -911,7 +913,7 @@ function PlasmicAbout__RenderFunc(props: {
                       sty.h2__vmCBy
                     )}
                   >
-                    {'2. Unlock Characters'}
+                    {'2. Speak to Kathleen Breitman'}
                   </h2>
 
                   <p
@@ -937,7 +939,7 @@ function PlasmicAbout__RenderFunc(props: {
                       sty.h2__fXugZ
                     )}
                   >
-                    {'3. Unlock Worlds '}
+                    {'3. Go to Baker'}
                   </h2>
 
                   <p
@@ -963,7 +965,7 @@ function PlasmicAbout__RenderFunc(props: {
                       sty.h2__xmwTa
                     )}
                   >
-                    {'4. Unlock Missions'}
+                    {'4. Find Elmo Saves'}
                   </h2>
 
                   <p
@@ -989,7 +991,7 @@ function PlasmicAbout__RenderFunc(props: {
                       sty.h2__mom2H
                     )}
                   >
-                    {'5. Buy Land'}
+                    {'5. Find Tan-Tan'}
                   </h2>
 
                   <p
@@ -1015,7 +1017,7 @@ function PlasmicAbout__RenderFunc(props: {
                       sty.h2__c90K
                     )}
                   >
-                    {'6. Unlock Duels'}
+                    {'6. Find Beets'}
                   </h2>
 
                   <p
@@ -1024,6 +1026,526 @@ function PlasmicAbout__RenderFunc(props: {
                       projectcss.p,
                       projectcss.__wab_text,
                       sty.p__edJjn
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__laz1Z)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__c2ClW
+                    )}
+                  >
+                    {'7. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__r1Svj
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__tiNW)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___4ZvZ
+                    )}
+                  >
+                    {'8. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__g0NMe
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__pYyxK)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___4RmGb
+                    )}
+                  >
+                    {'9. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__uC53
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column___5INas)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__dy4Kd
+                    )}
+                  >
+                    {'10. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__e2MxT
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__oe8Nb)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__ofdfP
+                    )}
+                  >
+                    {'11. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__k3Ipy
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__bXpgT)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__vEpri
+                    )}
+                  >
+                    {'12. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__zSRyz
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__dGkV4)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___2Id7H
+                    )}
+                  >
+                    {'13. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__tvNwP
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column___7Oxbp)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___6Mtz6
+                    )}
+                  >
+                    {'14. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__matgb
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column___7YSbZ)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__zy4R4
+                    )}
+                  >
+                    {'15. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__jwmsU
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__o1Uby)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__fZcgZ
+                    )}
+                  >
+                    {'16. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p___2Q6Uf
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__vorMd)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__cBaC
+                    )}
+                  >
+                    {'17. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__ra9K
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__ls69S)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___7Gj1U
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__bv1Pf
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__t95I)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__flhHl
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__pCwOx
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__lq2Jx)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___22WwR
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__w5X
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__vO)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__l24Zt
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p___9Maj
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__ceDxP)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__guuiL
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__zky3Z
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__tuZ1F)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__mxdrm
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__g0DEw
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__iGaki)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2___4Yry5
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__wCWl2
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column__hbas6)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__oaug8
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__zBaT2
+                    )}
+                  >
+                    {
+                      "The next thing we'll bring players of Algo Ranchero is the ability to duel. This western pastime is will offer action and rewards through a nerve-racking mini-game consisting of a tense standoff with an gun-toting opponent. "
+                    }
+                  </p>
+                </div>
+
+                <div className={classNames(projectcss.all, sty.column___5RZMw)}>
+                  <h2
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.h2,
+                      projectcss.__wab_text,
+                      sty.h2__wQsb
+                    )}
+                  >
+                    {'18. Find Beets'}
+                  </h2>
+
+                  <p
+                    className={classNames(
+                      projectcss.all,
+                      projectcss.p,
+                      projectcss.__wab_text,
+                      sty.p__yMlt8
                     )}
                   >
                     {
@@ -1962,7 +2484,7 @@ function PlasmicAbout__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     'root',
-    'navBar',
+    'navBars',
     'section1',
     'container',
     'flexBox',
@@ -2036,7 +2558,7 @@ const PlasmicDescendants = {
     'youtube',
     'vimeo',
   ],
-  navBar: ['navBar'],
+  navBars: ['navBars'],
   section1: [
     'section1',
     'container',
@@ -2248,7 +2770,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: 'div';
-  navBar: typeof NavBar;
+  navBars: typeof NavBars;
   section1: 'section';
   container: 'div';
   flexBox: 'div';
@@ -2384,7 +2906,7 @@ export const PlasmicAbout = Object.assign(
   makeNodeComponent('root'),
   {
     // Helper components rendering sub-elements
-    navBar: makeNodeComponent('navBar'),
+    navBars: makeNodeComponent('navBars'),
     section1: makeNodeComponent('section1'),
     container: makeNodeComponent('container'),
     flexBox: makeNodeComponent('flexBox'),

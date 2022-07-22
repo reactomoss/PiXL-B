@@ -44,43 +44,46 @@ import ChecksvgIcon from './icons/PlasmicIcon__Checksvg'; // plasmic-import: Qqq
 import Icon4Icon from './icons/PlasmicIcon__Icon4'; // plasmic-import: OSUzn4xWLpgWdF/icon
 import logoPixlFinalpng1ZD2FlguY from './images/logoPixlFinalpng.png'; // plasmic-import: 1zD2FlguY/picture
 
-export type PlasmicNavBar__VariantMembers = {
+export type PlasmicNavBars__VariantMembers = {
   synced: 'synced';
 };
 
-export type PlasmicNavBar__VariantsArgs = {
+export type PlasmicNavBars__VariantsArgs = {
   synced?: SingleBooleanChoiceArg<'synced'>;
 };
 
-type VariantPropType = keyof PlasmicNavBar__VariantsArgs;
-export const PlasmicNavBar__VariantProps = new Array<VariantPropType>('synced');
+type VariantPropType = keyof PlasmicNavBars__VariantsArgs;
+export const PlasmicNavBars__VariantProps = new Array<VariantPropType>(
+  'synced'
+);
 
-export type PlasmicNavBar__ArgsType = {};
-type ArgPropType = keyof PlasmicNavBar__ArgsType;
-export const PlasmicNavBar__ArgProps = new Array<ArgPropType>();
+export type PlasmicNavBars__ArgsType = {};
+type ArgPropType = keyof PlasmicNavBars__ArgsType;
+export const PlasmicNavBars__ArgProps = new Array<ArgPropType>();
 
-export type PlasmicNavBar__OverridesType = {
+export type PlasmicNavBars__OverridesType = {
   root?: p.Flex<'header'>;
   logoWrap?: p.Flex<'a'>;
   logo?: p.Flex<typeof p.PlasmicImg>;
   navmenu?: p.Flex<'div'>;
   link3?: p.Flex<'a'>;
   about?: p.Flex<'a'>;
+  about2?: p.Flex<'a'>;
   link4?: p.Flex<'a'>;
   navBarButtonBlock?: p.Flex<'div'>;
   syncButton?: p.Flex<typeof Button>;
   btnText?: p.Flex<'div'>;
 };
 
-export interface DefaultNavBarProps {
+export interface DefaultNavBarsProps {
   synced?: SingleBooleanChoiceArg<'synced'>;
   className?: string;
 }
 
-function PlasmicNavBar__RenderFunc(props: {
-  variants: PlasmicNavBar__VariantsArgs;
-  args: PlasmicNavBar__ArgsType;
-  overrides: PlasmicNavBar__OverridesType;
+function PlasmicNavBars__RenderFunc(props: {
+  variants: PlasmicNavBars__VariantsArgs;
+  args: PlasmicNavBars__ArgsType;
+  overrides: PlasmicNavBars__OverridesType;
 
   forNode?: string;
 }) {
@@ -180,6 +183,20 @@ function PlasmicNavBar__RenderFunc(props: {
           </a>
 
           <a
+            data-plasmic-name={'about2'}
+            data-plasmic-override={overrides.about2}
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              projectcss.__wab_text,
+              sty.about2
+            )}
+            href={'/about' as const}
+          >
+            {'Quests'}
+          </a>
+
+          <a
             data-plasmic-name={'link4'}
             data-plasmic-override={overrides.link4}
             className={classNames(
@@ -238,6 +255,7 @@ const PlasmicDescendants = {
     'navmenu',
     'link3',
     'about',
+    'about2',
     'link4',
     'navBarButtonBlock',
     'syncButton',
@@ -245,9 +263,10 @@ const PlasmicDescendants = {
   ],
   logoWrap: ['logoWrap', 'logo'],
   logo: ['logo'],
-  navmenu: ['navmenu', 'link3', 'about', 'link4'],
+  navmenu: ['navmenu', 'link3', 'about', 'about2', 'link4'],
   link3: ['link3'],
   about: ['about'],
+  about2: ['about2'],
   link4: ['link4'],
   navBarButtonBlock: ['navBarButtonBlock', 'syncButton', 'btnText'],
   syncButton: ['syncButton', 'btnText'],
@@ -263,6 +282,7 @@ type NodeDefaultElementType = {
   navmenu: 'div';
   link3: 'a';
   about: 'a';
+  about2: 'a';
   link4: 'a';
   navBarButtonBlock: 'div';
   syncButton: typeof Button;
@@ -271,18 +291,18 @@ type NodeDefaultElementType = {
 
 type ReservedPropsType = 'variants' | 'args' | 'overrides';
 type NodeOverridesType<T extends NodeNameType> = Pick<
-  PlasmicNavBar__OverridesType,
+  PlasmicNavBars__OverridesType,
   DescendantsType<T>
 >;
 type NodeComponentProps<T extends NodeNameType> =
   // Explicitly specify variants, args, and overrides as objects
   {
-    variants?: PlasmicNavBar__VariantsArgs;
-    args?: PlasmicNavBar__ArgsType;
+    variants?: PlasmicNavBars__VariantsArgs;
+    args?: PlasmicNavBars__ArgsType;
     overrides?: NodeOverridesType<T>;
-  } & Omit<PlasmicNavBar__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
+  } & Omit<PlasmicNavBars__VariantsArgs, ReservedPropsType> & // Specify variants directly as props
     // Specify args directly as props
-    Omit<PlasmicNavBar__ArgsType, ReservedPropsType> &
+    Omit<PlasmicNavBars__ArgsType, ReservedPropsType> &
     // Specify overrides for each element directly as props
     Omit<
       NodeOverridesType<T>,
@@ -304,13 +324,13 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
         deriveRenderOpts(props, {
           name: nodeName,
           descendantNames: [...PlasmicDescendants[nodeName]],
-          internalArgPropNames: PlasmicNavBar__ArgProps,
-          internalVariantPropNames: PlasmicNavBar__VariantProps,
+          internalArgPropNames: PlasmicNavBars__ArgProps,
+          internalVariantPropNames: PlasmicNavBars__VariantProps,
         }),
       [props, nodeName]
     );
 
-    return PlasmicNavBar__RenderFunc({
+    return PlasmicNavBars__RenderFunc({
       variants,
       args,
       overrides,
@@ -318,15 +338,15 @@ function makeNodeComponent<NodeName extends NodeNameType>(nodeName: NodeName) {
     });
   };
   if (nodeName === 'root') {
-    func.displayName = 'PlasmicNavBar';
+    func.displayName = 'PlasmicNavBars';
   } else {
-    func.displayName = `PlasmicNavBar.${nodeName}`;
+    func.displayName = `PlasmicNavBars.${nodeName}`;
   }
   return func;
 }
 
-export const PlasmicNavBar = Object.assign(
-  // Top-level PlasmicNavBar renders the root element
+export const PlasmicNavBars = Object.assign(
+  // Top-level PlasmicNavBars renders the root element
   makeNodeComponent('root'),
   {
     // Helper components rendering sub-elements
@@ -335,16 +355,17 @@ export const PlasmicNavBar = Object.assign(
     navmenu: makeNodeComponent('navmenu'),
     link3: makeNodeComponent('link3'),
     about: makeNodeComponent('about'),
+    about2: makeNodeComponent('about2'),
     link4: makeNodeComponent('link4'),
     navBarButtonBlock: makeNodeComponent('navBarButtonBlock'),
     syncButton: makeNodeComponent('syncButton'),
     btnText: makeNodeComponent('btnText'),
 
-    // Metadata about props expected for PlasmicNavBar
-    internalVariantProps: PlasmicNavBar__VariantProps,
-    internalArgProps: PlasmicNavBar__ArgProps,
+    // Metadata about props expected for PlasmicNavBars
+    internalVariantProps: PlasmicNavBars__VariantProps,
+    internalArgProps: PlasmicNavBars__ArgProps,
   }
 );
 
-export default PlasmicNavBar;
+export default PlasmicNavBars;
 /* prettier-ignore-end */

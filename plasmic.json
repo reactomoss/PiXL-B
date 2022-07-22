@@ -7,7 +7,7 @@
   },
   "style": {
     "scheme": "css-modules",
-    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.module.css"
+    "defaultStyleCssFilePath": "plasmic/plasmic__default_style.css"
   },
   "images": {
     "scheme": "files",
@@ -69,6 +69,19 @@
           "componentType": "page"
         },
         {
+          "id": "jXtM3YjACR",
+          "name": "NavBars",
+          "type": "managed",
+          "projectId": "hyV3Qh6omoZfLaxr2maQHq",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavBars.tsx",
+          "importSpec": {
+            "modulePath": "NavBars.tsx"
+          },
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavBars.module.css",
+          "scheme": "blackbox",
+          "componentType": "component"
+        },
+        {
           "id": "Xw8-kYruc_9",
           "name": "About",
           "type": "managed",
@@ -82,17 +95,17 @@
           "componentType": "page"
         },
         {
-          "id": "jXtM3YjACR",
-          "name": "NavBar",
+          "id": "9QeuLLTh6l8",
+          "name": "Quests",
           "type": "managed",
           "projectId": "hyV3Qh6omoZfLaxr2maQHq",
-          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicNavBar.tsx",
+          "renderModuleFilePath": "plasmic/pi_xl_b/PlasmicQuests.tsx",
           "importSpec": {
-            "modulePath": "NavBar.tsx"
+            "modulePath": "Quests.tsx"
           },
-          "cssFilePath": "plasmic/pi_xl_b/PlasmicNavBar.module.css",
+          "cssFilePath": "plasmic/pi_xl_b/PlasmicQuests.module.css",
           "scheme": "blackbox",
-          "componentType": "component"
+          "componentType": "page"
         }
       ],
       "icons": [
@@ -397,6 +410,16 @@
           "id": "L0NJf5Cz0_",
           "name": "HereandNow_LogoSmall.svg",
           "filePath": "plasmic/pi_xl_b/images/hereandNowLogoSmallsvg.svg"
+        },
+        {
+          "id": "mOuDddpbw",
+          "name": "buyToken",
+          "filePath": "plasmic/pi_xl_b/images/buyToken.png"
+        },
+        {
+          "id": "WXYJvupSw",
+          "name": "whatIsPiXL",
+          "filePath": "plasmic/pi_xl_b/images/whatIsPiXl.png"
         }
       ],
       "indirect": false,

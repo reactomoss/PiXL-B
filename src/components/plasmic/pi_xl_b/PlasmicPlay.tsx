@@ -31,7 +31,7 @@ import {
   deriveRenderOpts,
   ensureGlobalVariants,
 } from '@plasmicapp/react-web';
-import NavBar from '../../NavBar'; // plasmic-import: jXtM3YjACR/component
+import NavBars from '../../NavBars'; // plasmic-import: jXtM3YjACR/component
 import Button from '../../Button'; // plasmic-import: l1cZrxXjGJlGQf/component
 
 import { useScreenVariants as useScreenVariants_38ZwnZarMk9Gci } from './PlasmicGlobalVariant__Screen'; // plasmic-import: 38zwnZARMk9Gci/globalVariant
@@ -53,7 +53,7 @@ import image7BVdShZJtamLxd from './images/image7.png'; // plasmic-import: bVDSh_
 import tradingpngZVhC3LPn4VnQz5 from './images/tradingpng.png'; // plasmic-import: zVhC3LPn4VnQz5/picture
 import image4WkqPguPrwp0Jtc from './images/image4.png'; // plasmic-import: wkqPguPrwp0JTC/picture
 import unityPlaceholderpngV2V6ZXVikVsae from './images/unityPlaceholderpng.png'; // plasmic-import: V2v6zXVikVSAE-/picture
-import needpng3EgjsurOi4RUFc from './images/needpng.png'; // plasmic-import: 3egjsurOi4rUFc/picture
+import buyTokenMOuDddpbw from './images/buyToken.png'; // plasmic-import: mOuDddpbw/picture
 import coin1A2NpmTr5I from './images/coin1.png'; // plasmic-import: a2NpmTr5i/picture
 import logoPixlFinalpng1ZD2FlguY from './images/logoPixlFinalpng.png'; // plasmic-import: 1zD2FlguY/picture
 import icons8TwittersvgCmbUSdZjsh1Fmc from './images/icons8Twittersvg.svg'; // plasmic-import: CmbUSdZjsh1fmc/picture
@@ -80,7 +80,7 @@ export const PlasmicPlay__ArgProps = new Array<ArgPropType>(
 
 export type PlasmicPlay__OverridesType = {
   root?: p.Flex<'div'>;
-  navBar?: p.Flex<typeof NavBar>;
+  navBars?: p.Flex<typeof NavBars>;
   section2?: p.Flex<'section'>;
   subHeading?: p.Flex<'h2'>;
   logoContainer?: p.Flex<'div'>;
@@ -206,10 +206,10 @@ function PlasmicPlay__RenderFunc(props: {
             sty.root
           )}
         >
-          <NavBar
-            data-plasmic-name={'navBar'}
-            data-plasmic-override={overrides.navBar}
-            className={classNames('__wab_instance', sty.navBar)}
+          <NavBars
+            data-plasmic-name={'navBars'}
+            data-plasmic-override={overrides.navBars}
+            className={classNames('__wab_instance', sty.navBars)}
           />
 
           {true ? (
@@ -1611,10 +1611,12 @@ function PlasmicPlay__RenderFunc(props: {
                       displayMinHeight={'0' as const}
                       displayMinWidth={'0' as const}
                       displayWidth={'auto' as const}
-                      link={'https://ab2.gallery/asset/794691991' as const}
+                      link={
+                        'https://objkt.com/asset/KT1SGdop74rGobKAETcBPnz9yQkH38hZnpBh/1' as const
+                      }
                       loading={'lazy' as const}
                       src={{
-                        src: needpng3EgjsurOi4RUFc,
+                        src: buyTokenMOuDddpbw,
                         fullWidth: 300,
                         fullHeight: 600,
                         aspectRatio: undefined,
@@ -2021,7 +2023,7 @@ function PlasmicPlay__RenderFunc(props: {
 const PlasmicDescendants = {
   root: [
     'root',
-    'navBar',
+    'navBars',
     'section2',
     'subHeading',
     'logoContainer',
@@ -2092,7 +2094,7 @@ const PlasmicDescendants = {
     'youtube',
     'vimeo',
   ],
-  navBar: ['navBar'],
+  navBars: ['navBars'],
   section2: ['section2', 'subHeading', 'logoContainer'],
   subHeading: ['subHeading'],
   logoContainer: ['logoContainer'],
@@ -2296,7 +2298,7 @@ type DescendantsType<T extends NodeNameType> =
   typeof PlasmicDescendants[T][number];
 type NodeDefaultElementType = {
   root: 'div';
-  navBar: typeof NavBar;
+  navBars: typeof NavBars;
   section2: 'section';
   subHeading: 'h2';
   logoContainer: 'div';
@@ -2429,7 +2431,7 @@ export const PlasmicPlay = Object.assign(
   makeNodeComponent('root'),
   {
     // Helper components rendering sub-elements
-    navBar: makeNodeComponent('navBar'),
+    navBars: makeNodeComponent('navBars'),
     section2: makeNodeComponent('section2'),
     subHeading: makeNodeComponent('subHeading'),
     logoContainer: makeNodeComponent('logoContainer'),
