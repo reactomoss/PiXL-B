@@ -4,6 +4,10 @@ export const API_BASE_URL_SERVER = 'https://pixl-dev.herokuapp.com';
 export const API_BASE_URL_LOCAL = 'http://localhost:5000';
 export const API_BASE_URL = API_BASE_URL_SERVER;
 
+export const TZSTATS_URL_MAINNET = 'https://api.tzstats.com';
+export const TZSTATS_URL_GHOSTNET = 'https://api.ghost.tzstats.com';
+export const TZSTATS_URL = TZSTATS_URL_GHOSTNET;
+
 export const TOKEN_PIXLTEZ = 0;
 export const TOKEN_INITCOIN = 1;
 
