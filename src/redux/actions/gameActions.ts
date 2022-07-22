@@ -5,14 +5,14 @@ export const setLoadingStateAction = (status) => ({
   payload: status,
 });
 
-export const getEntryCoinsAction = (contracts: any, walletAddress: string) => ({
+export const getEntryCoinsAction = (contract: any, walletAddress: string) => ({
   type: ApiConstants.API_GET_ENTRY_COINS_LOAD,
-  payload: { contracts, walletAddress },
+  payload: { contract, walletAddress },
 });
 
-export const getGameItemsAction = (id: string, key: string) => ({
+export const getGameItemsAction = (contract: any, walletAddress: string) => ({
   type: ApiConstants.API_GET_GAME_ITEMS_LOAD,
-  payload: { id, key },
+  payload: { contract, walletAddress },
 });
 
 export const setEntryCoinsAction = (coins) => ({

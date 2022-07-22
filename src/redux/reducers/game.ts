@@ -3,8 +3,10 @@ import * as ApiConstants from '../api';
 const initialState = {
   loading: false,
   gameStarted: false,
+  initEntryCoins: false,
   entryCoins: null,
-  gameItems: [],
+  initGameItems: false,
+  gameItems: [] as any[],
   inventoryFull: false,
 };
 
@@ -57,6 +59,7 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
+        initEntryCoins: true,
         entryCoins: Number(action.payload.value),
       }
     }
@@ -67,10 +70,19 @@ const gameReducer = (state = initialState, action: any) => {
       }
     }
     case ApiConstants.API_GET_GAME_ITEMS_SUCCESS: {
-      console.log('gameItems', action.payload)
+      const gameItems = [...state.gameItems];
+      const item = gameItems.find((i: any) => i.tokenId === action.payload.tokenId);
+      if (item) {
+        item.amount = action.payload.amount;
+      } else {
+        gameItems.push(action.payload);
+      }
+      console.log('gameItems', action.payload, gameItems)
       return {
         ...state,
         loading: false,
+        initGameItems: true,
+        gameItems,
       }
     }
     default: {

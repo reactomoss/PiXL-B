@@ -1,7 +1,7 @@
-import { call, put, takeEvery } from 'redux-saga/effects'
+import { call, put, takeEvery } from 'redux-saga/effects';
 import * as ApiConstants from '../api';
 import * as tzstats from '../../services/tzstats';
-import { Contracts } from 'config';
+import { Contracts, GameTokens, PixlTokens } from 'config';
 
 function* getContractSaga(action) {
   try {
@@ -11,7 +11,10 @@ function* getContractSaga(action) {
     }
 
     const contract = result.data;
-    const ledgerKeys = yield call(tzstats.getBigmapKeys, contract.bigmaps.ledger);
+    const ledgerKeys = yield call(
+      tzstats.getBigmapKeys,
+      contract.bigmaps.ledger
+    );
     if (ledgerKeys.status !== 200) {
       throw new Error('Failed to get contract data');
     }
@@ -21,7 +24,7 @@ function* getContractSaga(action) {
       payload: {
         contract: result.data,
         ledgerKeys: ledgerKeys.data,
-      }
+      },
     });
   } catch (error) {
     yield put({
@@ -33,12 +36,12 @@ function* getContractSaga(action) {
 
 function* getEntryCoinsSaga(action) {
   try {
-    const { contracts, walletAddress } = action.payload;
-    const contract = contracts.find(c => c.contract.address === Contracts.Pixltez);
-    if (!contract) {
-      throw new Error('Can not find PiXLtez contract');
-    }
-    const ledgerKey = contract.ledgerKeys.find(it => it.key[0] === walletAddress && it.key[1] === '0');
+    const { contract, walletAddress } = action.payload;
+    const ledgerKey = contract.ledgerKeys.find(
+      (it) =>
+        it.key[0] === walletAddress &&
+        it.key[1] === PixlTokens.InitCoin.toString()
+    );
     if (!ledgerKey) {
       throw new Error('Can not find ledger key');
     }
@@ -62,15 +65,28 @@ function* getEntryCoinsSaga(action) {
 
 function* getGameItemsSaga(action) {
   try {
-    // const result = yield call(tzstats.getBigmapValue, action.payload);
-    // if (result.status === 200) {
-    //   yield put({
-    //     type: ApiConstants.API_GET_GAME_ITEMS_SUCCESS,
-    //     payload: result.data,
-    //   });
-    // } else {
-    //   throw new Error('Failed to get game items');
-    // }
+    const { contract, walletAddress } = action.payload;
+    const ledgerKey = contract.ledgerKeys.find(
+      (it) =>
+        it.key[0] === walletAddress &&
+        it.key[1] === GameTokens.HealthPotion.toString()
+    );
+    if (!ledgerKey) {
+      throw new Error('Can not find ledger key');
+    }
+    const bigmapId = contract.contract.bigmaps.ledger;
+    const result = yield call(tzstats.getBigmapValue, bigmapId, ledgerKey.hash);
+    if (result.status === 200) {
+      yield put({
+        type: ApiConstants.API_GET_GAME_ITEMS_SUCCESS,
+        payload: {
+          tokenId: GameTokens.HealthPotion,
+          amount: result.data.value
+        },
+      });
+    } else {
+      throw new Error('Failed to get game items');
+    }
   } catch (error) {
     yield put({
       type: ApiConstants.API_GET_GAME_ITEMS_ERROR,

@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { IUnityContextHook } from 'react-unity-webgl/distribution/interfaces/unity-context-hook';
 import { ItemType } from 'types';
 import toast from 'react-hot-toast';
 import * as service from 'services';
@@ -9,11 +8,10 @@ import useGameContract from 'hooks/useGameContract';
 import { addGameItemsAction, setInventoryFullAction } from 'redux/actions';
 import useWallet from './useWallet';
 
-const useUnityItems = (unityContext: IUnityContextHook) => {
+const useUnityItems = (sendMessage: any) => {
   const dispatch = useDispatch();
   const { walletAddress } = useWallet();
   const { mintItem } = useGameContract();
-  const { sendMessage, addEventListener, removeEventListener } = unityContext;
 
   const sendGameController = (methodName: string, parameter?: any) => {
     sendMessage('GameController', methodName, parameter);
@@ -118,21 +116,13 @@ const useUnityItems = (unityContext: IUnityContextHook) => {
     }*/
   };
   
-  useEffect(() => {
-    addEventListener('MintThis', handleMintItem);
-    addEventListener('MintPiXLtez', handleMintPiXLtez);
-    addEventListener('GotItem', handleGotItem);
-    addEventListener('InventoryFull', handleInventoryFull);
-    addEventListener('RequestItem', handleRequestItem);
-
-    return () => {
-      removeEventListener('MintThis', handleMintItem);
-      removeEventListener('MintPiXLtez', handleMintPiXLtez);
-      removeEventListener('GotItem', handleGotItem);
-      removeEventListener('InventoryFull', handleInventoryFull);
-      removeEventListener('RequestItem', handleRequestItem);
-    };
-  });
+  return {
+    handleMintItem,
+    handleMintPiXLtez,
+    handleGotItem,
+    handleInventoryFull,
+    handleRequestItem,
+  }
 };
 
 export default useUnityItems;

@@ -23,6 +23,11 @@ export enum PixlTokens {
   InitCoin = 1,
 }
 
+export enum GameTokens {
+  HealthPotion = 0,
+  MagicPotion = 1,
+}
+
 export const Contracts = {
   Pixltez: 'KT1MRn2mPk9XLZibGpMdWv5yU7VhLAS58CpJ',
   PixlGame: 'KT1MQTLHYBBR8xNBQUs6wbXSfTfm9YhobWPT',

@@ -1,3 +1,4 @@
+import { GameTokens } from 'config';
 import { useSelector } from 'react-redux';
 import './Inventory.css';
 
@@ -5,11 +6,20 @@ type InventoryProps = {
   sendMessage: (gameObjectName: string, methodName: string, parameter?: any) => void;
 };
 
+const getItemImage = (tokenId) => {
+  switch (tokenId) {
+    case GameTokens.HealthPotion:
+      return 'https://cloudflare-ipfs.com/ipfs/QmNNtaYpP1N8tPdJCiDSCnzx8n8yEd8Qm6rx7vYwFji2qy';
+  }
+
+  return '';
+}
+
 const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
   const gameItems = useSelector((state: any) => state.gameState.gameItems);
 
   const getElementId = (item: any, index: number) => {
-    return `inventory_item_${item.id}_${index}`;
+    return `inventory_item_${item.tokenId}_${index}`;
   }
 
   const handleItemClicked = (item: any, index: number) => {
@@ -32,8 +42,8 @@ const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
         >
           <img
             className="item"
-            src={item.imageSrc}
-            alt={item.alt}
+            src={getItemImage(item.tokenId)}
+            alt={'Game Item'}
             style={{
               height: '202px',
               width: '202px',

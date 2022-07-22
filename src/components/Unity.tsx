@@ -1,15 +1,16 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
-import toast, { Toaster } from 'react-hot-toast';
-import * as service from 'services';
+import { Toaster } from 'react-hot-toast';
 import { Contracts } from 'config';
-import Lang from 'lang/en';
 import EntryCoin from './EntryCoin';
 import Inventory from './Inventory';
 import './Unity.css';
 import useWallet from 'hooks/useWallet';
-import { getGameContractAction, getEntryCoinsAction, setGameStartedAction, getGameItemsAction } from 'redux/actions';
+import { getGameContractAction, getEntryCoinsAction } from 'redux/actions';
+import useUnityGame from 'hooks/useUnityGame';
+import useUnityQuest from 'hooks/useUnityQuest';
+import useUnityItems from 'hooks/useUnityItems';
 
 const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
@@ -24,6 +25,10 @@ const UnityComponent = () => {
   const contracts = useSelector((state: any) => state.contractState.contracts);
   const { walletAddress } = useWallet();
   const unityContext = useUnityContext(unityConfig);
+  const { sendMessage, addEventListener, removeEventListener } = unityContext;
+  const unityGame = useUnityGame();
+  const unityQuest = useUnityQuest();
+  const unityItems = useUnityItems(sendMessage);
   const loadingPercentage = Math.round(unityContext.loadingProgression * 100);
 
   document.onfullscreenchange = function (event) {
@@ -43,46 +48,33 @@ const UnityComponent = () => {
   }, [dispatch, contracts])
 
   useEffect(() => {
-    if (walletAddress && !gameState.entryCoins) {
+    if (walletAddress && !gameState.initEntryCoins) {
       const contract = contracts.find(c => c.contract.address === Contracts.Pixltez);
-      if (contract) {
-        dispatch(getEntryCoinsAction(contracts, walletAddress));
-      }
+      contract && dispatch(getEntryCoinsAction(contract, walletAddress));
     }
-  }, [dispatch, walletAddress, contracts, gameState.entryCoins]);
-
-  const handleGameStarted = () => {
-    console.log('handleGameStarted')
-    dispatch(setGameStartedAction(true));
-    
-    const contract = contracts.find(c => c.contract.address === Contracts.PixlGame);
-    if (contract) {
-      const ledgerKey = contract.ledgerKeys.find(it => it.key[0] === walletAddress && it.key[1] === '0');
-      if (ledgerKey) {
-        const bigmapId = contract.contract.bigmaps.ledger;
-        dispatch(getGameItemsAction(bigmapId, ledgerKey.hash));
-      }
-    }
-  };
-
-  const handleGameOver = async (userName, score) => {
-    try {
-      const result = await service.setGraveyardEntry(userName, score);
-      if (result) {
-        toast.success(Lang.deathToGraveyard);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  }, [dispatch, walletAddress, contracts, gameState.initEntryCoins]);
 
   useEffect(() => {
-    unityContext.addEventListener('GameStarted', handleGameStarted);
-    unityContext.addEventListener('GameOver', handleGameOver);
+    addEventListener('GameStarted', unityGame.handleGameStarted);
+    addEventListener('GameOver', unityGame.handleGameOver);
+    addEventListener('ShareQuest', unityQuest.handleShareQuest);
+    addEventListener('QuestCompleted', unityQuest.handleQuestCompleted);
+    addEventListener('MintThis', unityItems.handleMintItem);
+    addEventListener('MintPiXLtez', unityItems.handleMintPiXLtez);
+    addEventListener('GotItem', unityItems.handleGotItem);
+    addEventListener('InventoryFull', unityItems.handleInventoryFull);
+    addEventListener('RequestItem', unityItems.handleRequestItem);
 
     return () => {
-      unityContext.removeEventListener('GameStarted', handleGameStarted);
-      unityContext.removeEventListener('GameOver', handleGameOver);
+      removeEventListener('GameStarted', unityGame.handleGameStarted);
+      removeEventListener('GameOver', unityGame.handleGameOver);
+      removeEventListener('ShareQuest', unityQuest.handleShareQuest);
+      removeEventListener('QuestCompleted', unityQuest.handleQuestCompleted);
+      removeEventListener('MintThis', unityItems.handleMintItem);
+      removeEventListener('MintPiXLtez', unityItems.handleMintPiXLtez);
+      removeEventListener('GotItem', unityItems.handleGotItem);
+      removeEventListener('InventoryFull', unityItems.handleInventoryFull);
+      removeEventListener('RequestItem', unityItems.handleRequestItem);
     };
   });
 
