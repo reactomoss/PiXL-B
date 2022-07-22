@@ -28,7 +28,7 @@ const Inventory = ({ sendMessage }: InventoryProps): JSX.Element => {
     if (element) {
       element.className = 'card animate__animated animate__backOutUp';
     }
-    sendMessage('GameController', 'UseItem', 0);
+    sendMessage('GameController', 'UseItem', item.tokenId);
   };
 
   return (
