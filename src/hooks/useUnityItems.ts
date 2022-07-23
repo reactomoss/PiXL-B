@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ItemType } from 'types';
 import toast from 'react-hot-toast';
 import * as service from 'services';
@@ -15,8 +15,10 @@ import { useCallback } from 'react';
 
 const useUnityItems = (sendMessage: any) => {
   const dispatch = useDispatch();
+  const gameState = useSelector((state: any) => state.gameState);
   const { walletAddress } = useWallet();
   const { mintNftItem } = useGameContract();
+  const { useItemState } = gameState;
 
   const sendGameController = (methodName: string, parameter?: any) => {
     sendMessage('GameController', methodName, parameter);
@@ -81,16 +83,18 @@ const useUnityItems = (sendMessage: any) => {
   };
 
   const handleItemAdded = useCallback((itemName: string) => {
-    console.log('ItemAdded', itemName);
-    dispatch(setUseItemStateAction(false));
-    notification.info(`PiXL`, `${itemName} Added to Game`);
+    console.log('ItemAdded', itemName, useItemState);
+    if (useItemState) {
+      dispatch(setUseItemStateAction(false));
+      notification.info(`PiXL`, `${itemName} Added to Game`);
+    }
 
     /*console.log('OnGotItem', itemId);
     const items = gameItems.filter((item) => item.alt !== itemId.toString());
     dispatch(addGameItemsAction(items));
     dispatch(setInventoryFullAction(false));
     toast.success('Item has been added your inventory');*/
-  }, [dispatch]);
+  }, [dispatch, useItemState]);
 
   const handleInventoryFull = () => {
     dispatch(setInventoryFullAction(true));

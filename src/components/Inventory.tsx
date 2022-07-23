@@ -46,7 +46,10 @@ const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
       }
       
       dispatch(setUseItemStateAction(true));
-      consumeItem(item.tokenId);
+
+      setTimeout(() => {
+        consumeItem(item.tokenId);
+      }, 1)
     }
   };
 
