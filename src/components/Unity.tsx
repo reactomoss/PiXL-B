@@ -79,7 +79,7 @@ const UnityComponent = () => {
   });
 
   const consumeItem = useCallback((tokenId) => {
-    sendMessage('GameController', 'UseItem', tokenId);
+    sendMessage('GameController', 'UseItem', 'Potion');
   }, [sendMessage]);
 
   const insertCoin = useCallback((tokenId) => {
