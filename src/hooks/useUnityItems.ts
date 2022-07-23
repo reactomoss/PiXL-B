@@ -8,7 +8,7 @@ import useGameContract from 'hooks/useGameContract';
 import {
   addGameItemsAction,
   setInventoryFullAction,
-  setItemAddedAction,
+  setUseItemStateAction,
 } from 'redux/actions';
 import useWallet from './useWallet';
 import { useCallback } from 'react';
@@ -82,7 +82,7 @@ const useUnityItems = (sendMessage: any) => {
 
   const handleItemAdded = useCallback((itemName: string) => {
     console.log('ItemAdded', itemName);
-    dispatch(setItemAddedAction(true));
+    dispatch(setUseItemStateAction(false));
     notification.info(`PiXL`, `${itemName} Added to Game`);
 
     /*console.log('OnGotItem', itemId);

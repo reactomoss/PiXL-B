@@ -1,6 +1,7 @@
 import { GameTokens } from 'config';
 import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUseItemStateAction } from 'redux/actions';
 import './Inventory.css';
 
 type InventoryProps = {
@@ -17,8 +18,9 @@ const getItemImage = (tokenId) => {
 }
 
 const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
+  const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  const { gameItems, itemAdded } = gameState;
+  const { gameItems, useItemState } = gameState;
 
   const invenItems = useMemo(() => {
     console.log('gameItems', gameItems)
@@ -36,12 +38,14 @@ const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
   }
 
   const handleItemClicked = (item: any, index: number) => {
-    if (itemAdded) {
+    if (!useItemState) {
       const elementId = getElementId(item, index);
       const element = document.getElementById(elementId);
       if (element) {
         element.className = 'card animate__animated animate__backOutUp';
       }
+      
+      dispatch(setUseItemStateAction(true));
       consumeItem(item.tokenId);
     }
   };

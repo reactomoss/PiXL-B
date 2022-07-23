@@ -91,7 +91,8 @@ const UnityComponent = () => {
 
   // const handleMintPiXLtez = () => {
   //   //unityItems.handleMintPiXLtez(20);
-  //   unityItems.handleMintItem("Health Potion");
+  //   //unityItems.handleMintItem("Health Potion");
+  //   unityItems.handleItemAdded("Health Potion");
   // }
 
   return (

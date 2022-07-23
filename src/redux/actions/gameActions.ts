@@ -40,7 +40,7 @@ export const setInventoryFullAction = (isInventoryFull: boolean) => ({
   payload: isInventoryFull,
 });
 
-export const setItemAddedAction = (state: boolean) => ({
-  type: ApiConstants.API_SET_ITEM_ADDED,
+export const setUseItemStateAction = (state: boolean) => ({
+  type: ApiConstants.API_SET_USE_ITEM_STATE,
   payload: state,
 });

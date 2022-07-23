@@ -8,7 +8,7 @@ const initialState = {
   initGameItems: false,
   gameItems: [] as any[],
   inventoryFull: false,
-  itemAdded: false,
+  useItemState: false,
 };
 
 const gameReducer = (state = initialState, action: any) => {
@@ -49,10 +49,10 @@ const gameReducer = (state = initialState, action: any) => {
         inventoryFull: action.payload,
       };
     }
-    case ApiConstants.API_SET_ITEM_ADDED: {
+    case ApiConstants.API_SET_USE_ITEM_STATE: {
       return {
         ...state,
-        itemAdded: action.payload,
+        useItemState: action.payload,
       };
     }
     case ApiConstants.API_GET_ENTRY_COINS_LOAD: {
