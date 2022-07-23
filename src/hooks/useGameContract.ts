@@ -63,8 +63,26 @@ const useGameContract = () => {
     return mint();
   }, [tezos, walletAddress]);
 
+  const mintNftItem = useCallback((itemName) => {
+    const mint = async () => {
+      const params: any = [{
+        to_: walletAddress,
+        metadata: MichelsonMap.fromLiteral({
+          name: char2Bytes(itemName),
+          decimals: char2Bytes('0'),
+          symbol: char2Bytes(itemName),
+        }),
+      }];
+      const contract = await tezos.wallet.at(Contracts.PixlGame);
+      const op = await contract.methods.mint(params).send();
+      return await op.confirmation();
+    }
+    return mint();
+  }, [tezos, walletAddress]);
+
   return {
     mintItem,
+    mintNftItem,
     getWalletTokens,
   };
 };

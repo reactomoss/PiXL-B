@@ -16,7 +16,7 @@ import { useCallback } from 'react';
 const useUnityItems = (sendMessage: any) => {
   const dispatch = useDispatch();
   const { walletAddress } = useWallet();
-  const { mintItem } = useGameContract();
+  const { mintNftItem } = useGameContract();
 
   const sendGameController = (methodName: string, parameter?: any) => {
     sendMessage('GameController', methodName, parameter);
@@ -34,12 +34,7 @@ const useUnityItems = (sendMessage: any) => {
     }
 
     try {
-      const tokenId = await service.getTokenId(itemName);
-      if (!tokenId) {
-        throw new Error('Failed to get token ID from server');
-      }
-
-      const transaction = await mintItem(tokenId, itemName);
+      const transaction = await mintNftItem(itemName);
       console.log('mintItem', transaction);
       if (!transaction) {
         throw new Error('Failed to mint item');
