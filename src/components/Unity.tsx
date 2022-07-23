@@ -85,8 +85,7 @@ const UnityComponent = () => {
 
   const insertCoin = useCallback((tokenId) => {
     sendMessage('AccessController', 'InsertCoin', tokenId);
-    unityGame.handleGameStarted();
-  }, [sendMessage, unityGame]);
+  }, [sendMessage]);
 
   // const handleMintPiXLtez = () => {
   //   unityItems.handleMintPiXLtez(20);
