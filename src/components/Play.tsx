@@ -31,7 +31,7 @@ function Play_(props: PlayProps, ref: HTMLElementRefOf<'div'>) {
     return (
       <div style={{ cursor: 'pointer' }}>
         <img
-          src={holding? 'images/ticket.png' : 'buyToken.png' }
+          src={holding? 'images/ticket.png' : 'images/buyToken.png' }
           alt="Ticket"
           onClick={handleTicketImageClick}
         />
