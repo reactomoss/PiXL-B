@@ -89,16 +89,16 @@ const UnityComponent = () => {
     sendMessage('AccessController', 'InsertCoin', tokenId);
   }, [sendMessage]);
 
-  const handleMintPiXLtez = () => {
-    //unityItems.handleMintPiXLtez(20);
-    unityItems.handleMintItem("Health Potion");
-  }
+  // const handleMintPiXLtez = () => {
+  //   //unityItems.handleMintPiXLtez(20);
+  //   unityItems.handleMintItem("Health Potion");
+  // }
 
   return (
     <>
-      <div className="debug-menu">
+      {/* <div className="debug-menu">
         <button onClick={handleMintPiXLtez}>Mint PiXLtez</button>
-      </div>
+      </div> */}
       <div className="unity-container">
         <Toaster />
         <Unity
