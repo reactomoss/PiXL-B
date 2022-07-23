@@ -24,13 +24,14 @@ export enum PixlTokens {
 }
 
 export enum GameTokens {
-  HealthPotion = 0,
+  HealthPotion = '5069584c4850', //0
   MagicPotion = 1,
 }
 
 export const Contracts = {
   Pixltez: 'KT1MRn2mPk9XLZibGpMdWv5yU7VhLAS58CpJ',
-  PixlGame: 'KT1MQTLHYBBR8xNBQUs6wbXSfTfm9YhobWPT',
+  PixlGame: 'KT1NEE7o79oodu2d2RCf7Hc1ZCMpUar8X2CM',
+  Fungible_PixlGame: 'KT1MQTLHYBBR8xNBQUs6wbXSfTfm9YhobWPT',
   DayPass: 'KT19jQhzpQNpsUrKYaRZQYapku8p8ML1FueD',
 }
 

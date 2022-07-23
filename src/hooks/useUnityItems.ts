@@ -1,12 +1,17 @@
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { ItemType } from 'types';
 import toast from 'react-hot-toast';
 import * as service from 'services';
+import * as notification from 'services/notification';
 import Lang from 'lang/en';
 import useGameContract from 'hooks/useGameContract';
-import { addGameItemsAction, setInventoryFullAction } from 'redux/actions';
+import {
+  addGameItemsAction,
+  setInventoryFullAction,
+  setItemAddedAction,
+} from 'redux/actions';
 import useWallet from './useWallet';
+import { useCallback } from 'react';
 
 const useUnityItems = (sendMessage: any) => {
   const dispatch = useDispatch();
@@ -50,7 +55,7 @@ const useUnityItems = (sendMessage: any) => {
       dispatch(addGameItemsAction([mintedItem]));
 
       sendGameController('ItemMinted', itemName);
-      toast.success(`Item ${itemName} has been successfully minted`);
+      notification.info(`PiXL`, `Item ${itemName} has been successfully minted`);
     
     } catch (error) {
       console.error(error);
@@ -72,7 +77,7 @@ const useUnityItems = (sendMessage: any) => {
       }
 
       sendGameController('PiXLtezMinted', amount);
-      toast.success(Lang.pixltezMinted);
+      notification.info(`PiXL`, Lang.pixltezMinted);
     } catch (err) {
       console.error(err);
       sendGameController('SendError', Lang.pixltezMintFailed);
@@ -80,13 +85,17 @@ const useUnityItems = (sendMessage: any) => {
     }
   };
 
-  const handleGotItem = (itemId: number) => {
+  const handleItemAdded = useCallback((itemName: string) => {
+    console.log('ItemAdded', itemName);
+    dispatch(setItemAddedAction(true));
+    notification.info(`PiXL`, `${itemName} Added to Game`);
+
     /*console.log('OnGotItem', itemId);
     const items = gameItems.filter((item) => item.alt !== itemId.toString());
     dispatch(addGameItemsAction(items));
     dispatch(setInventoryFullAction(false));
     toast.success('Item has been added your inventory');*/
-  };
+  }, [dispatch]);
 
   const handleInventoryFull = () => {
     dispatch(setInventoryFullAction(true));
@@ -119,7 +128,7 @@ const useUnityItems = (sendMessage: any) => {
   return {
     handleMintItem,
     handleMintPiXLtez,
-    handleGotItem,
+    handleItemAdded,
     handleInventoryFull,
     handleRequestItem,
   }

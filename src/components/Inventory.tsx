@@ -17,7 +17,8 @@ const getItemImage = (tokenId) => {
 }
 
 const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
-  const gameItems = useSelector((state: any) => state.gameState.gameItems);
+  const gameState = useSelector((state: any) => state.gameState);
+  const { gameItems, itemAdded } = gameState;
 
   const invenItems = useMemo(() => {
     console.log('gameItems', gameItems)
@@ -29,19 +30,20 @@ const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
       return prev;      
     }, [])
   }, [gameItems])
-  console.log('invenItems', invenItems)
 
   const getElementId = (item: any, index: number) => {
     return `inventory_item_${item.tokenId}_${index}`;
   }
 
   const handleItemClicked = (item: any, index: number) => {
-    const elementId = getElementId(item, index);
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.className = 'card animate__animated animate__backOutUp';
+    if (itemAdded) {
+      const elementId = getElementId(item, index);
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.className = 'card animate__animated animate__backOutUp';
+      }
+      consumeItem(item.tokenId);
     }
-    consumeItem(item.tokenId);
   };
 
   return (
