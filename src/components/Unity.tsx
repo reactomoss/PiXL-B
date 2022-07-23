@@ -79,12 +79,14 @@ const UnityComponent = () => {
   });
 
   const consumeItem = useCallback((tokenId) => {
+    console.log('consumeItem, tokenId=', tokenId)
     sendMessage('GameController', 'UseItem', 'Potion');
   }, [sendMessage]);
 
   const insertCoin = useCallback((tokenId) => {
     sendMessage('AccessController', 'InsertCoin', tokenId);
-  }, [sendMessage]);
+    unityGame.handleGameStarted();
+  }, [sendMessage, unityGame]);
 
   // const handleMintPiXLtez = () => {
   //   unityItems.handleMintPiXLtez(20);

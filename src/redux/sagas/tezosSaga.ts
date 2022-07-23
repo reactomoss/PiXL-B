@@ -77,6 +77,7 @@ function* getGameItemsSaga(action) {
       const metadata = contract.token_metadata.find(m => m.key === item.key);
       return (metadata && metadata.value['1']['symbol'] === GameTokens.HealthPotion);
     })
+    console.log('Health Potions', healthPotions)
     yield put({
       type: ApiConstants.API_GET_GAME_ITEMS_SUCCESS,
       payload: {
