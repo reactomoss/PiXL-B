@@ -36,7 +36,9 @@ const UnityComponent = () => {
   };
 
   useEffect(() => {
-    sendMessage('AccessController', 'WalletConnected', walletAddress || '');
+    if (walletAddress) {
+      sendMessage('AccessController', 'WalletConnected', walletAddress);
+    }
   }, [walletAddress, sendMessage]);
 
   useEffect(() => {
