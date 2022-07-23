@@ -70,6 +70,7 @@ export type PlasmicNavBars__OverridesType = {
   about?: p.Flex<'a'>;
   about2?: p.Flex<'a'>;
   link4?: p.Flex<'a'>;
+  link5?: p.Flex<'a'>;
   navBarButtonBlock?: p.Flex<'div'>;
   syncButton?: p.Flex<typeof Button>;
   btnText?: p.Flex<'div'>;
@@ -209,6 +210,20 @@ function PlasmicNavBars__RenderFunc(props: {
           >
             {'Store'}
           </a>
+
+          <a
+            data-plasmic-name={'link5'}
+            data-plasmic-override={overrides.link5}
+            className={classNames(
+              projectcss.all,
+              projectcss.a,
+              projectcss.__wab_text,
+              sty.link5
+            )}
+            href={'/play' as const}
+          >
+            {'Play'}
+          </a>
         </div>
       ) : null}
 
@@ -257,17 +272,19 @@ const PlasmicDescendants = {
     'about',
     'about2',
     'link4',
+    'link5',
     'navBarButtonBlock',
     'syncButton',
     'btnText',
   ],
   logoWrap: ['logoWrap', 'logo'],
   logo: ['logo'],
-  navmenu: ['navmenu', 'link3', 'about', 'about2', 'link4'],
+  navmenu: ['navmenu', 'link3', 'about', 'about2', 'link4', 'link5'],
   link3: ['link3'],
   about: ['about'],
   about2: ['about2'],
   link4: ['link4'],
+  link5: ['link5'],
   navBarButtonBlock: ['navBarButtonBlock', 'syncButton', 'btnText'],
   syncButton: ['syncButton', 'btnText'],
   btnText: ['btnText'],
@@ -284,6 +301,7 @@ type NodeDefaultElementType = {
   about: 'a';
   about2: 'a';
   link4: 'a';
+  link5: 'a';
   navBarButtonBlock: 'div';
   syncButton: typeof Button;
   btnText: 'div';
@@ -357,6 +375,7 @@ export const PlasmicNavBars = Object.assign(
     about: makeNodeComponent('about'),
     about2: makeNodeComponent('about2'),
     link4: makeNodeComponent('link4'),
+    link5: makeNodeComponent('link5'),
     navBarButtonBlock: makeNodeComponent('navBarButtonBlock'),
     syncButton: makeNodeComponent('syncButton'),
     btnText: makeNodeComponent('btnText'),

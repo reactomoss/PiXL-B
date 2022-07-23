@@ -925,7 +925,7 @@ function PlasmicQuests__RenderFunc(props: {
                     )}
                   >
                     {
-                      "Our next NFTs will be a series of characters that will allow you to change your hero's appearance and even add special skills. The character NFTs will be dropped over a period of time as they are revealed. "
+                      "!Our next NFTs will be a series of characters that will allow you to change your hero's appearance and even add special skills. The character NFTs will be dropped over a period of time as they are revealed. "
                     }
                   </p>
                 </div>
