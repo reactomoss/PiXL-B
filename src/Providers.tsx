@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux'
+import { NotificationsProvider } from "@mantine/notifications";
 import { NetworkOptions, TezosProvider } from './contexts/TezosContext';
 import store from './redux/store'
 
@@ -15,7 +16,9 @@ const Providers: React.FC<{ children?: JSX.Element | JSX.Element[] }> = ({
   return (
     <Provider store={store}>
       <TezosProvider options={options}>
-        {children}
+        <NotificationsProvider>
+          {children}
+        </NotificationsProvider>
       </TezosProvider>
     </Provider>
   );

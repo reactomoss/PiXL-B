@@ -1,3 +1,7 @@
 img.item {
   margin: auto;
 }
+
+div.disabled {
+  pointer-events: none;
+}

@@ -63,7 +63,7 @@ const UnityComponent = () => {
     addEventListener('QuestCompleted', unityQuest.handleQuestCompleted);
     addEventListener('MintThis', unityItems.handleMintItem);
     addEventListener('MintPiXLtez', unityItems.handleMintPiXLtez);
-    addEventListener('GotItem', unityItems.handleGotItem);
+    addEventListener('ItemAdded', unityItems.handleItemAdded);
     addEventListener('InventoryFull', unityItems.handleInventoryFull);
     addEventListener('RequestItem', unityItems.handleRequestItem);
 
@@ -74,7 +74,7 @@ const UnityComponent = () => {
       removeEventListener('QuestCompleted', unityQuest.handleQuestCompleted);
       removeEventListener('MintThis', unityItems.handleMintItem);
       removeEventListener('MintPiXLtez', unityItems.handleMintPiXLtez);
-      removeEventListener('GotItem', unityItems.handleGotItem);
+      removeEventListener('ItemAdded', unityItems.handleItemAdded);
       removeEventListener('InventoryFull', unityItems.handleInventoryFull);
       removeEventListener('RequestItem', unityItems.handleRequestItem);
     };
@@ -90,17 +90,14 @@ const UnityComponent = () => {
   }, [sendMessage]);
 
   // const handleMintPiXLtez = () => {
-  //   unityItems.handleMintPiXLtez(20);
+  //   //unityItems.handleMintPiXLtez(20);
+  //   unityItems.handleItemAdded("Health Potion");
   // }
 
   return (
     <>
-      {/* <div>
-        {gameState.gameStarted && (
-          <div className="debug-menu">
-            <button onClick={handleMintPiXLtez}>Mint PiXLtez</button>
-          </div>
-        )}
+      {/* <div className="debug-menu">
+        <button onClick={handleMintPiXLtez}>Mint PiXLtez</button>
       </div> */}
       <div className="unity-container">
         <Toaster />
