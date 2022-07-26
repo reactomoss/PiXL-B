@@ -14,7 +14,7 @@ function* getContractSaga(action) {
     const ledger = yield call(
       tzstats.getBigmapValues,
       contract.bigmaps.ledger
-    );    
+    );
     if (ledger.status !== 200) {
       throw new Error('Failed to get ledger keys');
     }
@@ -66,7 +66,7 @@ function* getEntryCoinsSaga(action) {
   }
 }
 
-function* getGameItemsSaga(action) {
+function* getGameNftItemsSaga(action) {
   try {
     const { contract, walletAddress } = action.payload;
     const items = contract.ledger.filter((it) => it.value === walletAddress);
@@ -83,6 +83,29 @@ function* getGameItemsSaga(action) {
       payload: {
         tokenId: GameTokens.HealthPotion,
         amount: healthPotions.length,
+      },
+    });
+  } catch (error) {
+    yield put({
+      type: ApiConstants.API_GET_GAME_ITEMS_ERROR,
+      error: error,
+    });
+  }
+}
+
+function* getGameItemsSaga(action) {
+  try {
+    const { contract, walletAddress } = action.payload;
+    const item = contract.ledger.find((it) => 
+      it.key['0'] === walletAddress &&
+      it.key['1'] === '' + GameTokens.HealthPotion
+    );
+    console.log('Health Potions', item)
+    yield put({
+      type: ApiConstants.API_GET_GAME_ITEMS_SUCCESS,
+      payload: {
+        tokenId: GameTokens.HealthPotion,
+        amount: Number(item.value),
       },
     });
   } catch (error) {

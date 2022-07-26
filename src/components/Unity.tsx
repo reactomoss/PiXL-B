@@ -11,6 +11,7 @@ import { getGameContractAction, getEntryCoinsAction } from 'redux/actions';
 import useUnityGame from 'hooks/useUnityGame';
 import useUnityQuest from 'hooks/useUnityQuest';
 import useUnityItems from 'hooks/useUnityItems';
+import useGameContract from '../hooks/useGameContract';
 
 const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
@@ -42,7 +43,7 @@ const UnityComponent = () => {
   }, [walletAddress, sendMessage]);
 
   useEffect(() => {
-    [Contracts.PixlGame, Contracts.Pixltez].forEach(address => {
+    [Contracts.PixlGame_Fungile, Contracts.Pixltez].forEach(address => {
       if (!contracts.find(c => c.contract.address === address)) {
         dispatch(getGameContractAction(address))
       }
@@ -89,10 +90,12 @@ const UnityComponent = () => {
     sendMessage('AccessController', 'InsertCoin', tokenId);
   }, [sendMessage]);
 
-  // const handleMintPiXLtez = () => {
+  // const handleMintPiXLtez = async () => {
   //   //unityItems.handleMintPiXLtez(20);
   //   //unityItems.handleMintItem("Health Potion");
-  //   unityItems.handleItemAdded("Health Potion");
+  //   //unityItems.handleItemAdded("Health Potion");
+  //   const tx = await mintSingleNftItem();
+  //   console.log('tx', tx)
   // }
 
   return (

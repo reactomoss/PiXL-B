@@ -27,7 +27,8 @@ const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
     return gameItems.reduce((prev, item) => {
       const amount = Number(item.amount);
       if (amount > 0) {
-        prev = prev.concat(new Array(amount).fill(item));
+        const itemCount = Math.min(5, amount);
+        prev = prev.concat(new Array(itemCount).fill(item));
       }
       return prev;      
     }, [])

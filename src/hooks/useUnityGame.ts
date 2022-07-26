@@ -18,7 +18,7 @@ const useUnityGame = () => {
     
     // Get inventory items.
     if (walletAddress) {
-      const contract = contracts.find(c => c.contract.address === Contracts.PixlGame);
+      const contract = contracts.find(c => c.contract.address === Contracts.PixlGame_Fungile);
       if (contract) {
         dispatch(getGameItemsAction(contract, walletAddress));
       }
