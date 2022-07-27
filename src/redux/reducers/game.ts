@@ -2,8 +2,9 @@ import * as ApiConstants from '../api';
 
 const initialState = {
   loading: false,
+  contracts: [] as any[],
   gameStarted: false,
-  initEntryCoins: false,
+  entryCoinLoaded: false,
   entryCoins: null,
   initGameItems: false,
   gameItems: [] as any[],
@@ -13,6 +14,32 @@ const initialState = {
 
 const gameReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case ApiConstants.API_GET_CONTRACT_LOAD: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case ApiConstants.API_GET_CONTRACT_SUCCESS: {
+      const contracts = [...state.contracts];
+      const index = contracts.findIndex((c: any) => c.address === action.payload.address);
+      if (index >= 0) {
+        contracts.splice(index, 1);
+      }
+      contracts.push(action.payload);
+      return {
+        ...state,
+        loading: false,
+        contracts
+      };
+    }
+    case ApiConstants.API_GET_CONTRACT_ERROR: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    }
     case ApiConstants.API_SET_LOADING_STATE: {
       return {
         ...state,
@@ -62,12 +89,13 @@ const gameReducer = (state = initialState, action: any) => {
       }
     }
     case ApiConstants.API_GET_ENTRY_COINS_SUCCESS: {
-      console.log('entryCoins', action.payload)
+      const { entrycoin } = action.payload;
+      console.log('entrycoin', entrycoin)
       return {
         ...state,
         loading: false,
-        initEntryCoins: true,
-        entryCoins: Number(action.payload.value),
+        entryCoinLoaded: true, 
+        entryCoins: Number(entrycoin.value),
       }
     }
     case ApiConstants.API_GET_GAME_ITEMS_LOAD: {

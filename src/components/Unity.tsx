@@ -22,7 +22,7 @@ const unityConfig = {
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  const contracts = useSelector((state: any) => state.contractState.contracts);
+  const { contracts, entryCoinLoaded } = gameState;
   const { walletAddress } = useWallet();
   const unityContext = useUnityContext(unityConfig);
   const { sendMessage, addEventListener, removeEventListener } = unityContext;
@@ -42,19 +42,16 @@ const UnityComponent = () => {
   }, [walletAddress, sendMessage]);
 
   useEffect(() => {
-    [Contracts.PixlGame, Contracts.Pixltez].forEach(address => {
-      if (!contracts.find(c => c.contract.address === address)) {
-        dispatch(getGameContractAction(address))
-      }
-    });
-  }, [dispatch, contracts])
-
-  useEffect(() => {
-    if (walletAddress && !gameState.initEntryCoins) {
-      const contract = contracts.find(c => c.contract.address === Contracts.Pixltez);
-      contract && dispatch(getEntryCoinsAction(contract, walletAddress));
+    const address = Contracts.Pixltez;
+    const contract = contracts.find(c => c.address === address);
+    if (!contract) {
+      dispatch(getGameContractAction(address))
+      return;
     }
-  }, [dispatch, walletAddress, contracts, gameState.initEntryCoins]);
+    if (walletAddress && !entryCoinLoaded) {
+      dispatch(getEntryCoinsAction(contract, walletAddress, 1));
+    }
+  }, [dispatch, walletAddress, contracts, entryCoinLoaded])
 
   useEffect(() => {
     addEventListener('GameStarted', unityGame.handleGameStarted);

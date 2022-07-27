@@ -9,7 +9,7 @@ import { Contracts } from 'config';
 
 const useUnityGame = () => {
   const dispatch = useDispatch();
-  const contracts = useSelector((state: any) => state.contractState.contracts);
+  const gameState = useSelector((state: any) => state.gameState);
   const { walletAddress } = useWallet();
 
   const handleGameStarted = useCallback(() => {
@@ -18,12 +18,13 @@ const useUnityGame = () => {
     
     // Get inventory items.
     if (walletAddress) {
+      const { contracts } = gameState;
       const contract = contracts.find(c => c.contract.address === Contracts.PixlGame);
       if (contract) {
         dispatch(getGameItemsAction(contract, walletAddress));
       }
     }
-  }, [dispatch, walletAddress, contracts]);
+  }, [dispatch, walletAddress, gameState]);
   
   const handleGameOver = async (userName, score) => {
     console.log('Game Over')

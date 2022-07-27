@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as ApiConstants from '../api';
 import * as tzstats from '../../services/tzstats';
-import { GameTokens, PixlTokens } from 'config';
+import { GameTokens } from 'config';
 
 function* getContractSaga(action) {
   try {
@@ -9,30 +9,12 @@ function* getContractSaga(action) {
     if (result.status !== 200) {
       throw new Error('Failed to get contract data');
     }
-
     const contract = result.data;
-    const ledger = yield call(
-      tzstats.getBigmapValues,
-      contract.bigmaps.ledger
-    );
-    if (ledger.status !== 200) {
-      throw new Error('Failed to get ledger keys');
-    }
-
-    const token_metadata = yield call(
-      tzstats.getBigmapValues,
-      contract.bigmaps.token_metadata
-    );    
-    if (token_metadata.status !== 200) {
-      throw new Error('Failed to get token metadata keys');
-    }
-
     yield put({
       type: ApiConstants.API_GET_CONTRACT_SUCCESS,
       payload: {
-        contract: result.data,
-        ledger: ledger.data,
-        token_metadata: token_metadata.data,
+        address: contract.address,
+        bigmaps: contract.bigmaps,
       },
     });
   } catch (error) {
@@ -45,49 +27,24 @@ function* getContractSaga(action) {
 
 function* getEntryCoinsSaga(action) {
   try {
-    const { contract, walletAddress } = action.payload;
-    const item = contract.ledger.find(
-      (it) =>
-        it.key[0] === walletAddress &&
-        it.key[1] === PixlTokens.InitCoin.toString()
-    );
-    if (!item) {
-      throw new Error('Can not find ledger key');
+    const { contract, walletAddress, tokenId } = action.payload;
+    const ledger = contract.bigmaps.ledger;
+    const key = `${walletAddress},${tokenId}`;
+
+    const result = yield call(tzstats.getBigmapValue, ledger, key);
+    if (result.status !== 200) {
+      throw new Error('Failed to get contract data');
     }
     yield put({
       type: ApiConstants.API_GET_ENTRY_COINS_SUCCESS,
-      payload: item,
+      payload: {
+        address: contract.address,
+        entrycoin: result.data,
+      }
     });
   } catch (error) {
     yield put({
       type: ApiConstants.API_GET_ENTRY_COINS_ERROR,
-      error: error,
-    });
-  }
-}
-
-function* getGameNftItemsSaga(action) {
-  try {
-    const { contract, walletAddress } = action.payload;
-    const items = contract.ledger.filter((it) => it.value === walletAddress);
-    if (!items) {
-      throw new Error('Can not find tokens');
-    }
-    const healthPotions = items.filter(item => {
-      const metadata = contract.token_metadata.find(m => m.key === item.key);
-      return (metadata && metadata.value['1']['symbol'] === GameTokens.HealthPotion);
-    })
-    console.log('Health Potions', healthPotions)
-    yield put({
-      type: ApiConstants.API_GET_GAME_ITEMS_SUCCESS,
-      payload: {
-        tokenId: GameTokens.HealthPotion,
-        amount: healthPotions.length,
-      },
-    });
-  } catch (error) {
-    yield put({
-      type: ApiConstants.API_GET_GAME_ITEMS_ERROR,
       error: error,
     });
   }
