@@ -6,7 +6,19 @@ export const API_BASE_URL = API_BASE_URL_SERVER;
 
 export const TZSTATS_URL_MAINNET = 'https://api.tzstats.com';
 export const TZSTATS_URL_GHOSTNET = 'https://api.ghost.tzstats.com';
-export const TZSTATS_URL = TZSTATS_URL_GHOSTNET;
+export const TZSTATS_URL = TZSTATS_URL_MAINNET;
+
+export const TEST_NETWORK_OPTIONS = {
+  appName: 'PiXL',
+  networkType: 'ghostnet',
+  rpc: 'https://rpc.ghostnet.teztnets.xyz',
+};
+
+export const NETWORK_OPTIONS = {
+  appName: 'PiXL',
+  networkType: 'mainnet',
+  rpc: 'https://mainnet.api.tez.ie',
+};
 
 export const TOKEN_PIXLTEZ = 0;
 export const TOKEN_INITCOIN = 1;
@@ -28,10 +40,16 @@ export enum GameTokens {
   MagicPotion = 1,
 }
 
-export const Contracts = {
+export const Contracts_Ghostnet = {
   Pixltez: 'KT1MRn2mPk9XLZibGpMdWv5yU7VhLAS58CpJ',
   PixlGame_NFT: 'KT1NEE7o79oodu2d2RCf7Hc1ZCMpUar8X2CM',
   PixlGame_Fungile: 'KT19eGPe6cQuVP89r7ES8Hs6eZzz3xmgx5UC',
+  DayPass: 'KT19jQhzpQNpsUrKYaRZQYapku8p8ML1FueD',
+}
+
+export const Contracts = {
+  Pixltez: 'KT1SGdop74rGobKAETcBPnz9yQkH38hZnpBh',
+  PixlGame: 'KT1XC8ML3TwX3NiTdwx4zKG1Ee4aA7yV2Y8t',
   DayPass: 'KT19jQhzpQNpsUrKYaRZQYapku8p8ML1FueD',
 }
 

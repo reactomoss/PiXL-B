@@ -11,7 +11,6 @@ import { getGameContractAction, getEntryCoinsAction } from 'redux/actions';
 import useUnityGame from 'hooks/useUnityGame';
 import useUnityQuest from 'hooks/useUnityQuest';
 import useUnityItems from 'hooks/useUnityItems';
-import useGameContract from '../hooks/useGameContract';
 
 const unityConfig = {
   loaderUrl: 'Build/1.loader.js',
@@ -43,7 +42,7 @@ const UnityComponent = () => {
   }, [walletAddress, sendMessage]);
 
   useEffect(() => {
-    [Contracts.PixlGame_Fungile, Contracts.Pixltez].forEach(address => {
+    [Contracts.PixlGame, Contracts.Pixltez].forEach(address => {
       if (!contracts.find(c => c.contract.address === address)) {
         dispatch(getGameContractAction(address))
       }

@@ -11,7 +11,7 @@ const useGameContract = () => {
 
   const getWalletTokens = useCallback((tokenId: number) => {
     const walletItems = async () => {
-      const contract = await tezos.contract.at(Contracts.PixlGame_Fungile, compose(tzip16, tzip12));
+      const contract = await tezos.contract.at(Contracts.PixlGame, compose(tzip16, tzip12));
       const storage: any = await contract.storage();
       const value = await storage.ledger.get({ 0: walletAddress, 1: tokenId });
       console.log('value', value);
@@ -56,7 +56,7 @@ const useGameContract = () => {
         }];
       }
 
-      const contract = await tezos.wallet.at(Contracts.PixlGame_Fungile);
+      const contract = await tezos.wallet.at(Contracts.PixlGame);
       const op = await contract.methods.mint(params).send();
       return await op.confirmation();
     }
@@ -73,7 +73,7 @@ const useGameContract = () => {
           symbol: char2Bytes(itemName),
         }),
       }];
-      const contract = await tezos.wallet.at(Contracts.PixlGame_NFT);
+      const contract = await tezos.wallet.at(Contracts.PixlGame);
       const op = await contract.methods.mint(params).send();
       return await op.confirmation();
     }
@@ -86,7 +86,7 @@ const useGameContract = () => {
         owner: walletAddress,
         amount: 1,
       }];
-      const contract = await tezos.wallet.at(Contracts.PixlGame_NFT);
+      const contract = await tezos.wallet.at(Contracts.PixlGame);
       console.log('contract', contract)
       const op = await contract.methods.mint_tokens(params).send();
       console.log('contract-op', op)
