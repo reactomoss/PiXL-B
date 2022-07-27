@@ -10,9 +10,9 @@ export const getEntryCoinsAction = (contract: any, walletAddress: string, tokenI
   payload: { contract, walletAddress, tokenId },
 });
 
-export const getGameItemsAction = (contract: any, walletAddress: string) => ({
+export const getGameItemsAction = (contract: any, walletAddress: string, tokenId: number) => ({
   type: ApiConstants.API_GET_GAME_ITEMS_LOAD,
-  payload: { contract, walletAddress },
+  payload: { contract, walletAddress, tokenId },
 });
 
 export const setEntryCoinsAction = (coins) => ({

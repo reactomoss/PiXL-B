@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 import { Toaster } from 'react-hot-toast';
@@ -7,7 +7,11 @@ import EntryCoin from './EntryCoin';
 import Inventory from './Inventory';
 import './Unity.css';
 import useWallet from 'hooks/useWallet';
-import { getGameContractAction, getEntryCoinsAction } from 'redux/actions';
+import {
+  getGameContractAction,
+  getEntryCoinsAction,
+  getGameItemsAction,
+} from 'redux/actions';
 import useUnityGame from 'hooks/useUnityGame';
 import useUnityQuest from 'hooks/useUnityQuest';
 import useUnityItems from 'hooks/useUnityItems';
@@ -22,7 +26,7 @@ const unityConfig = {
 const UnityComponent = () => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
-  const { contracts, entryCoinLoaded } = gameState;
+  const { contracts, entryCoinLoaded, gameStarted, gameItemsLoaded } = gameState;
   const { walletAddress } = useWallet();
   const unityContext = useUnityContext(unityConfig);
   const { sendMessage, addEventListener, removeEventListener } = unityContext;
@@ -41,17 +45,35 @@ const UnityComponent = () => {
     }
   }, [walletAddress, sendMessage]);
 
+  const getContract = useCallback((address: string) => {
+    const contract = contracts.find((c) => c.address === address);
+    if (contract) {
+      return contract;
+    }
+    dispatch(getGameContractAction(address));
+  }, [dispatch, contracts]);
+
+  /**Get Entry Coins*/
   useEffect(() => {
-    const address = Contracts.Pixltez;
-    const contract = contracts.find(c => c.address === address);
-    if (!contract) {
-      dispatch(getGameContractAction(address))
+    if (!walletAddress || entryCoinLoaded) {
       return;
     }
-    if (walletAddress && !entryCoinLoaded) {
+    const contract = getContract(Contracts.Pixltez);
+    if (contract) {
       dispatch(getEntryCoinsAction(contract, walletAddress, 1));
     }
-  }, [dispatch, walletAddress, contracts, entryCoinLoaded])
+  }, [dispatch, getContract, walletAddress, entryCoinLoaded]);
+
+  /**Get inventory items*/
+  useEffect(() => {
+    if (!walletAddress || !gameStarted || gameItemsLoaded) {
+      return;
+    }
+    const contract = getContract(Contracts.PixlGame);
+    if (contract) {
+      dispatch(getGameItemsAction(contract, walletAddress, 0));
+    }
+  }, [dispatch, getContract, walletAddress, gameStarted, gameItemsLoaded]);
 
   useEffect(() => {
     addEventListener('GameStarted', unityGame.handleGameStarted);
@@ -77,14 +99,20 @@ const UnityComponent = () => {
     };
   });
 
-  const consumeItem = useCallback((tokenId) => {
-    console.log('consumeItem, tokenId=', tokenId)
-    sendMessage('GameController', 'AddItem', 'Potion');
-  }, [sendMessage]);
+  const consumeItem = useCallback(
+    (tokenId) => {
+      console.log('consumeItem, tokenId=', tokenId);
+      sendMessage('GameController', 'AddItem', 'Potion');
+    },
+    [sendMessage]
+  );
 
-  const insertCoin = useCallback((tokenId) => {
-    sendMessage('AccessController', 'InsertCoin', tokenId);
-  }, [sendMessage]);
+  const insertCoin = useCallback(
+    (tokenId) => {
+      sendMessage('AccessController', 'InsertCoin', tokenId);
+    },
+    [sendMessage]
+  );
 
   // const handleMintPiXLtez = async () => {
   //   //unityItems.handleMintPiXLtez(20);
@@ -122,7 +150,7 @@ const UnityComponent = () => {
             <EntryCoin insertCoin={insertCoin}></EntryCoin>
           )}
           {gameState.gameStarted && (
-            <>              
+            <>
               <Inventory consumeItem={consumeItem}></Inventory>
             </>
           )}

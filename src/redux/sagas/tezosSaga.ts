@@ -1,7 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import * as ApiConstants from '../api';
 import * as tzstats from '../../services/tzstats';
-import { GameTokens } from 'config';
 
 function* getContractSaga(action) {
   try {
@@ -52,16 +51,23 @@ function* getEntryCoinsSaga(action) {
 
 function* getGameItemsSaga(action) {
   try {
-    const { contract, walletAddress } = action.payload;
-    const item = contract.ledger.find((it) => 
-      it.key['0'] === walletAddress &&
-      it.key['1'] === '' + GameTokens.HealthPotion
-    );
-    console.log('Health Potions', item)
+    console.log('getGameItemsSaga', action)
+    const { contract, walletAddress, tokenId } = action.payload;
+    const ledger = contract.bigmaps.ledger;
+    const key = `${walletAddress},${tokenId}`;
+
+    const result = yield call(tzstats.getBigmapValue, ledger, key);
+    if (result.status !== 200) {
+      console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~error')
+      throw new Error('Failed to get contract data');
+    }
+
+    const item = result.data;
     yield put({
       type: ApiConstants.API_GET_GAME_ITEMS_SUCCESS,
       payload: {
-        tokenId: GameTokens.HealthPotion,
+        contract: contract.address,
+        tokenId: tokenId,
         amount: Number(item.value),
       },
     });

@@ -6,7 +6,7 @@ const initialState = {
   gameStarted: false,
   entryCoinLoaded: false,
   entryCoins: null,
-  initGameItems: false,
+  gameItemsLoaded: false,
   gameItems: [] as any[],
   inventoryFull: false,
   useItemState: false,
@@ -105,10 +105,11 @@ const gameReducer = (state = initialState, action: any) => {
       }
     }
     case ApiConstants.API_GET_GAME_ITEMS_SUCCESS: {
+      const { tokenId, amount } = action.payload;
       const gameItems = [...state.gameItems];
-      const item = gameItems.find((i: any) => i.tokenId === action.payload.tokenId);
+      const item = gameItems.find((i: any) => i.tokenId === tokenId);
       if (item) {
-        item.amount = action.payload.amount;
+        item.amount = amount;
       } else {
         gameItems.push(action.payload);
       }
@@ -116,7 +117,7 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        initGameItems: true,
+        gameItemsLoaded: true,
         gameItems,
       }
     }

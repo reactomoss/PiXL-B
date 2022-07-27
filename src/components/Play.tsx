@@ -15,11 +15,11 @@ function Play_(props: PlayProps, ref: HTMLElementRefOf<'div'>) {
 
   React.useEffect(() => {
     if (walletAddress) {
-      getTokenTime(DayPassToken.DayPass).then((token) => {
+      /*getTokenTime(DayPassToken.DayPass).then((token) => {
         if (token) {
           setHolding(true);
         }
-      });
+      });*/
     }
   }, [walletAddress, getTokenTime]);
 
