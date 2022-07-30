@@ -17,7 +17,7 @@ const useUnityItems = (sendMessage: any) => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
   const { walletAddress } = useWallet();
-  const { mintNftItem } = useGameContract();
+  const { mintToken } = useGameContract();
   const { useItemState } = gameState;
 
   const sendGameController = (methodName: string, parameter?: any) => {
@@ -25,7 +25,7 @@ const useUnityItems = (sendMessage: any) => {
   };
 
   const handleMintItem = async (itemName: string) => {
-    console.log('MintThis:', itemName);
+    console.log('MintThis:', itemName, walletAddress);
     if (!walletAddress) {
       toast.error(Lang.connectYourWallet);
       return;
@@ -36,8 +36,8 @@ const useUnityItems = (sendMessage: any) => {
     }
 
     try {
-      const transaction = await mintNftItem(itemName);
-      console.log('mintItem', transaction);
+      const transaction = await mintToken(0);
+      console.log('mintItem.transaction', transaction);
       if (!transaction) {
         throw new Error('Failed to mint item');
       }
@@ -47,7 +47,7 @@ const useUnityItems = (sendMessage: any) => {
       const mintedItem = {
         name: itemName,
         imageSrc: '/whitney-with-microphone.png',
-        alt: 'Game Item',
+        alt: 'Health Potion',
       } as ItemType;
       dispatch(addGameItemsAction([mintedItem]));
 

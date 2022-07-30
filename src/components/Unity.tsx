@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Unity, useUnityContext } from 'react-unity-webgl';
 import { Toaster } from 'react-hot-toast';
@@ -114,18 +114,18 @@ const UnityComponent = () => {
     [sendMessage]
   );
 
-  // const handleMintPiXLtez = async () => {
-  //   //unityItems.handleMintPiXLtez(20);
-  //   //unityItems.handleMintItem("Health Potion");
-  //   //unityItems.handleItemAdded("Health Potion");
-  //   const tx = await mintSingleNftItem();
-  //   console.log('tx', tx)
-  // }
+  /*const handleMintPiXLtez = async () => {
+    //unityItems.handleMintPiXLtez(20);
+    unityItems.handleMintItem("Health Potion");
+    //unityItems.handleItemAdded("Health Potion");
+    //const tx = await mintSingleNftItem();
+    //console.log('tx', tx)
+  }*/
 
   return (
     <>
       {/* <div className="debug-menu">
-        <button onClick={handleMintPiXLtez}>Mint PiXLtez</button>
+        <button onClick={handleMintPiXLtez}>Mint Health Potion</button>
       </div> */}
       <div className="unity-container">
         <Toaster />
