@@ -58,9 +58,9 @@ const UnityComponent = () => {
     if (!walletAddress || entryCoinLoaded) {
       return;
     }
-    const contract = getContract(Contracts.Pixltez);
+    const contract = getContract(Contracts.Entrycoin);
     if (contract) {
-      dispatch(getEntryCoinsAction(contract, walletAddress, 1));
+      dispatch(getEntryCoinsAction(contract, walletAddress, 0));
     }
   }, [dispatch, getContract, walletAddress, entryCoinLoaded]);
 

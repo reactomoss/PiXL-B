@@ -37,7 +37,6 @@ const gameReducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        error: action.payload.error,
       };
     }
     case ApiConstants.API_SET_LOADING_STATE: {
