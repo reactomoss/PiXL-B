@@ -32,7 +32,7 @@ const EntryCoin = ({ insertCoin }: EntryCoinProps): JSX.Element => {
         >
           <img
             className="entry-coin"
-            src='https://cloudflare-ipfs.com/ipfs/QmPTFsFgEYfS3VV9uaTWfWUQGVqbaHa1t2npBUQZ4NiAvP'
+            src='/images/entrycoin.gif'
             alt='PiXL Entry Coin'
             style={{
               height: '190px',

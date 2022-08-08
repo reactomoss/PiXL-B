@@ -65,7 +65,7 @@ const Inventory = ({ consumeItem }: InventoryProps): JSX.Element => {
         >
           <img
             className="item"
-            src={getItemImage(item.tokenId)}
+            src="/images/health_potion.jpg"
             alt={'Game Item'}
             style={{
               height: '202px',
