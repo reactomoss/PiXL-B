@@ -26,7 +26,7 @@ function Play_(props: PlayProps, ref: HTMLElementRefOf<'div'>) {
   }, [walletAddress, entryCoins]);
 
   const handleTicketImageClick = () => {
-    window.open('https://ab2.gallery/asset/794691991', '_blank')
+    window.open('https://objkt.com/asset/KT1SGdop74rGobKAETcBPnz9yQkH38hZnpBh/1', '_blank')
   }
 
   const ticketImage = () => {
