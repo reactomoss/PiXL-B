@@ -1,14 +1,16 @@
 import * as Notification from '@mantine/notifications';
 
-export const info = (title: string, message: string) => {
+export const info = (id: string, title: string, message: string) => {
   Notification.showNotification({
+    id: id,
     title: title,
     message: message
   });
 };
 
-export const error = (title: string, message: string) => {
+export const error = (id: string, title: string, message: string) => {
   Notification.showNotification({
+    id: id,
     title: title,
     message: message,
     color: 'red'

@@ -13,7 +13,7 @@ const Providers: React.FC<{ children?: JSX.Element | JSX.Element[] }> = ({
   return (
     <Provider store={store}>
       <TezosProvider options={options}>
-        <NotificationsProvider>
+        <NotificationsProvider autoClose={2000}>
           {children}
         </NotificationsProvider>
       </TezosProvider>

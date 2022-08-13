@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ItemType } from 'types';
-import toast from 'react-hot-toast';
 import * as service from 'services';
 import * as notification from 'services/notification';
 import Lang from 'lang/en';
@@ -27,7 +26,7 @@ const useUnityItems = (sendMessage: any) => {
   const handleMintItem = async (itemName: string) => {
     console.log('MintThis:', itemName, walletAddress);
     if (!walletAddress) {
-      toast.error(Lang.connectYourWallet);
+      notification.error('MintItem', 'PiXL', Lang.connectYourWallet);
       return;
     }
     if (!itemName) {
@@ -52,19 +51,19 @@ const useUnityItems = (sendMessage: any) => {
       dispatch(addGameItemsAction([mintedItem]));
 
       sendGameController('ItemMinted', itemName);
-      notification.info(`PiXL`, `Item ${itemName} has been successfully minted`);
+      notification.info('MintItem', 'PiXL', `Item ${itemName} has been successfully minted`);
     
     } catch (error) {
       console.error(error);
       sendGameController('SendError', 'Failed to mint item');
-      toast.error(`Failed to mint item ${itemName}`);
+      notification.error('MintItem', 'PiXL', `Failed to mint item ${itemName}`);
     }
   };
 
   const handleMintPiXLtez = async (amount: number) => {
     console.log('MintPiXLtez', amount);
     if (!walletAddress) {
-      toast.error(Lang.connectYourWallet);
+      notification.error('MintItem', 'PiXL', Lang.connectYourWallet);
       return;
     }
     try {
@@ -74,11 +73,11 @@ const useUnityItems = (sendMessage: any) => {
       }
 
       sendGameController('PiXLtezMinted', amount);
-      notification.info(`PiXL`, Lang.pixltezMinted);
+      notification.info('MintPixltez', 'PiXL', Lang.pixltezMinted);
     } catch (err) {
       console.error(err);
       sendGameController('SendError', Lang.pixltezMintFailed);
-      toast.error(Lang.pixltezMintFailed);
+      notification.error('MintItem', 'PiXL', Lang.pixltezMintFailed);
     }
   };
 
@@ -86,7 +85,7 @@ const useUnityItems = (sendMessage: any) => {
     console.log('ItemAdded', itemName, useItemState);
     if (useItemState) {
       dispatch(setUseItemStateAction(false));
-      notification.info(`PiXL`, `${itemName} Added to Game`);
+      notification.info('ItemAdded', 'PiXL', `${itemName} Added to Game`);
     }
 
     /*console.log('OnGotItem', itemId);
