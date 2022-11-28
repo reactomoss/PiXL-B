@@ -12,7 +12,7 @@ export const sanitizeEntries = (
 };
 
 export const getGraveyardEntries = async () => {
-  return await fetch(`${API_BASE_URL}/api/graveyard`, {
+  return await fetch(`${API_BASE_URL}/api/pixltez/graveyard`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const setGraveyardEntry = async (name: string, score: string) => {
     enemy: enemies[(enemies.length * Math.random()) | 0],
     location: locations[(locations.length * Math.random()) | 0],
   };
-  return await fetch(`${API_BASE_URL}/api/graveyard/insert`, {
+  return await fetch(`${API_BASE_URL}/api/pixltez/graveyard/insert`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

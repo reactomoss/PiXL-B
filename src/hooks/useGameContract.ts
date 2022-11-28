@@ -3,11 +3,24 @@ import { MichelsonMap, compose } from '@taquito/taquito';
 import { char2Bytes } from '@taquito/utils';
 import { tzip12 } from "@taquito/tzip12";
 import { tzip16 } from "@taquito/tzip16";
-import { Contracts } from 'config';
+import { Contracts, PixlTokens } from 'config';
 import { useTezosContext } from "./useTezosContext";
 
 const useGameContract = () => {
   const { tezos, walletAddress } = useTezosContext()!;
+
+  const getPixltezBalance = useCallback(async () => {
+    try {
+      console.log('walletAddress', walletAddress)
+      const contract = await tezos.contract.at(Contracts.PixlGame, compose(tzip16, tzip12));
+      const storage: any = await contract.storage();
+      const value = await storage.ledger.get({ 0: walletAddress, 1: PixlTokens.Pixltez });
+      return value.toNumber() / 100;
+    } catch (e) {
+      console.error(e);
+      return 0;
+    }
+  }, [tezos, walletAddress]);
 
   const getWalletTokens = useCallback((tokenId: number) => {
     const walletItems = async () => {
@@ -111,6 +124,7 @@ const useGameContract = () => {
   }, [tezos, walletAddress]);
 
   return {
+    getPixltezBalance,
     mintItem,
     mintToken,
     mintNftItem,

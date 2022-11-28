@@ -16,7 +16,7 @@ const useUnityItems = (sendMessage: any) => {
   const dispatch = useDispatch();
   const gameState = useSelector((state: any) => state.gameState);
   const { walletAddress } = useWallet();
-  const { mintToken } = useGameContract();
+  const { mintToken, getPixltezBalance } = useGameContract();
   const { useItemState } = gameState;
 
   const sendGameController = (methodName: string, parameter?: any) => {
@@ -73,6 +73,10 @@ const useUnityItems = (sendMessage: any) => {
       }
 
       sendGameController('PiXLtezMinted', amount);
+
+      const balance = await getPixltezBalance();
+      sendGameController('UpdatePiXLTez', balance);
+
       notification.info('MintPixltez', 'PiXL', Lang.pixltezMinted);
     } catch (err) {
       console.error(err);

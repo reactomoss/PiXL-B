@@ -13,7 +13,7 @@ export const updateQuestStatus = async (questId: number, walletAddress: string, 
     questId,
   };
   return await axios
-    .post(`${API_BASE_URL}/api/quest/update`, body)
+    .post(`${API_BASE_URL}/api/pixltez/quest/update`, body)
     .then((res) => {
       console.log('res', res);
       return res.data;

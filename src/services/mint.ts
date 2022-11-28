@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_BASE_URL } from '../config';
 
 export const mintPixltez = async (address: string, amount: number) => {
-  const url = `${API_BASE_URL}/api/contract/airdrop/pixltez`;
+  const url = `${API_BASE_URL}/api/pixltez/contract/airdrop/pixltez`;
   const payload = {
     addresses: [address],
     amount,
@@ -112,7 +112,7 @@ export const mintPixltez = async (address: string, amount: number) => {
 }*/
 
 export const getTokenId = async (itemName: string) => {
-  const url = `${API_BASE_URL}/api/contract/token`;
+  const url = `${API_BASE_URL}/api/pixltez/contract/token`;
   return axios
     .post(url, { name: itemName })
     .then((res) => {
@@ -126,7 +126,7 @@ export const getTokenId = async (itemName: string) => {
 };
 
 export const updateMintResult = async (userAddress: string, itemName: string) => {
-  const url = `${API_BASE_URL}/api/contract/mintItems`;
+  const url = `${API_BASE_URL}/api/pixltez/contract/mintItems`;
   const payload = {
     items: [{
       name: itemName,
@@ -148,7 +148,7 @@ export const updateMintResult = async (userAddress: string, itemName: string) =>
 
 export const shareQuest = async (questDetails: any, Id: any) => {
   // on a successful transfer the api should return use the object details so that we can display it to the user
-  const result = await fetch(`${API_BASE_URL}/api/transfer/shareQuest`, {
+  const result = await fetch(`${API_BASE_URL}/api/pixltez/transfer/shareQuest`, {
     mode: 'no-cors',
     method: 'POST',
     body: JSON.stringify({ questDetails, Id }),

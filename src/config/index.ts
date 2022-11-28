@@ -1,7 +1,7 @@
 export const ENV = 'production';
 
-export const API_BASE_URL_SERVER = 'https://pixl-dev.herokuapp.com';
-export const API_BASE_URL_LOCAL = 'http://localhost:5000';
+export const API_BASE_URL_SERVER = 'https://grat.fun';
+export const API_BASE_URL_LOCAL = 'http://localhost:5001';
 export const API_BASE_URL = API_BASE_URL_SERVER;
 
 export const TZSTATS_URL_MAINNET = 'https://api.tzstats.com';
@@ -40,7 +40,7 @@ export enum DayPassToken {
 }
 
 export enum PixlTokens {
-  Pixltez = 0,
+  Pixltez = 1,
   InitCoin = 1,
 }
 
